@@ -103,6 +103,106 @@
 
         .mobile-toggle { display: none; font-size: 1.5rem; color: var(--brand-navy); cursor: pointer; }
 
+        /* DROPDOWN CONTAINER */
+        .nav-item-dropdown {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        /* THE DROPDOWN BOX */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            min-width: 280px;
+            padding: 12px 0;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(31, 32, 96, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1100;
+            border: 1px solid rgba(0,0,0,0.05);
+            list-style: none;
+        }
+
+        /* POINTER ARROW */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* SHOW ON HOVER */
+        .nav-item-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* DROPDOWN LINKS */
+        .dropdown-menu li { display: block; margin: 0; }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        /* Remove underline effect from main menu for dropdown items */
+        .dropdown-menu a::after { display: none; }
+
+        .dropdown-menu a i:first-child {
+            width: 24px;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .arrow-hover {
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.2s;
+            font-size: 0.8em;
+            color: var(--brand-cyan);
+        }
+
+        /* LINK HOVER STATE */
+        .dropdown-menu a:hover {
+            background: #F0F9FF;
+            color: var(--brand-cyan);
+            border-left-color: var(--brand-cyan);
+            padding-left: 28px;
+        }
+
+        .dropdown-menu a:hover i:first-child { color: var(--brand-cyan); }
+        .dropdown-menu a:hover .arrow-hover { opacity: 1; transform: translateX(0); }
+
+        /* Mobile Nav */
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(31, 32, 96, 0.98); z-index: 999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: 0.4s ease; backdrop-filter: blur(10px);
+        }
+        .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
+        .mobile-links a { display: block; color: white; font-size: 2rem; margin: 20px 0; text-decoration: none; font-family: 'Playfair Display'; }
+
         /* =========================================
            3. HERO SECTION
            ========================================= */
@@ -327,40 +427,7 @@
         .accordion-item.active i { transform: rotate(180deg); transition: 0.3s; color: var(--brand-cyan); }
 
         /* =========================================
-           9. REDESIGNED CTA (No Form)
-           ========================================= */
-        .cta-banner {
-            background: linear-gradient(120deg, var(--brand-navy) 0%, #101135 100%);
-            border-radius: 40px; margin-bottom: 80px;
-            padding: 80px 60px; text-align: center; position: relative; overflow: hidden;
-            box-shadow: 0 30px 60px rgba(31, 32, 96, 0.4);
-        }
-        .cta-banner::before {
-            content: ''; position: absolute; top: -50%; left: -20%; width: 100%; height: 200%;
-            background: radial-gradient(circle, rgba(0, 159, 227, 0.2) 0%, transparent 70%);
-            transform: rotate(30deg);
-        }
-        .cta-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
-        .cta-content h2 { color: white; font-size: 3rem; margin-bottom: 20px; }
-        .cta-content p { color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 40px; }
-        
-        .big-cta-btn {
-            display: inline-flex; align-items: center; gap: 15px;
-            background: var(--brand-cyan); color: white; padding: 18px 45px;
-            border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none;
-            box-shadow: 0 0 0 0 rgba(0, 159, 227, 0.7);
-            animation: pulse-blue 2s infinite; transition: transform 0.3s;
-        }
-        .big-cta-btn:hover { background: white; color: var(--brand-cyan); transform: scale(1.05); }
-
-        @keyframes pulse-blue {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 159, 227, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(0, 159, 227, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 159, 227, 0); }
-        }
-
-        /* =========================================
-           10. FOOTER & MOBILE MENU
+           9. FOOTER & MOBILE MENU
            ========================================= */
         footer { background: #050505; color: #888; padding: 100px 0 30px; }
         .footer-logo { font-size: 1.8rem; color: white; font-family: 'Playfair Display', serif; margin-bottom: 25px; display: block; text-decoration: none;}
@@ -370,18 +437,20 @@
         .footer ul li a { color: #888; text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
         .footer ul li a:hover { color: var(--brand-cyan); padding-left: 5px; }
 
-        /* Mobile Nav */
-        .mobile-menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(31, 32, 96, 0.98); z-index: 999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.4s ease; backdrop-filter: blur(10px);
-        }
-        .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
-        .mobile-links a { display: block; color: white; font-size: 2rem; margin: 20px 0; text-decoration: none; font-family: 'Playfair Display'; }
-
-        /* RESPONSIVE */
+        /* Mobile Nav Overrides */
         @media (max-width: 968px) {
+            .nav-item-dropdown { width: 100%; text-align: center; }
+            .dropdown-menu {
+                position: static; transform: none; opacity: 1; visibility: visible;
+                box-shadow: none; border: none; background: #f8f9fc;
+                width: 100%; display: none; padding: 0; margin-top: 10px;
+            }
+            .dropdown-menu::before { display: none; }
+            .dropdown-menu.active { display: block; animation: slideDown 0.3s ease; }
+            .dropdown-menu a { padding: 15px 20px; justify-content: flex-start; gap: 15px; }
+            .arrow-hover { display: none; }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+            
             .hero { flex-direction: column; text-align: center; padding-top: 150px; }
             .hero-bg { position: relative; width: 100%; height: 350px; transform: none; right: auto; top: auto; border-radius: 20px; margin-top: 40px; }
             .hero-content, .tracker-box { margin: 0 auto; }
@@ -397,8 +466,6 @@
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .brand-logo { height: 40px; }
             .logo-text { font-size: 1.2rem; }
-            .cta-banner { padding: 60px 20px; }
-            .cta-content h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -414,11 +481,54 @@
             </a>
             
             <ul class="menu">
-                <li><a href="index.html" class="hover-link">Home</a></li>
-                <li><a href="service.html" class="hover-link">Services</a></li>
-                <li><a href="#pet" class="hover-link">Pet Relocation</a></li>
-                <li><a href="#faq" class="hover-link">FAQ</a></li>
-                <li><a href="contact.html" class="btn-quote hover-link">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                
+                <li class="nav-item-dropdown">
+                    <a href="services.html" class="dropdown-trigger">
+                        Services <i class="fa-solid fa-chevron-down" style="font-size: 0.7em; margin-left: 6px; opacity: 0.7;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="services.html#customs">
+                                <i class="fa-solid fa-file-signature"></i> Customs Brokerage
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html#air">
+                                <i class="fa-solid fa-plane-departure"></i> Air Freight
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html#ocean">
+                                <i class="fa-solid fa-ship"></i> Ocean Freight
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html#surface">
+                                <i class="fa-solid fa-truck-fast"></i> Surface Transport
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html#movers">
+                                <i class="fa-solid fa-boxes-packing"></i> Packers & Movers
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html#pet">
+                                <i class="fa-solid fa-paw"></i> Pet Relocation
+                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
             </ul>
 
             <div class="mobile-toggle">
@@ -430,7 +540,7 @@
     <div class="mobile-menu-overlay">
         <div class="mobile-links">
             <a href="#about" onclick="toggleMenu()">Process</a>
-            <a href="#services" onclick="toggleMenu()">Services</a>
+            <a href="services.html" onclick="toggleMenu()">Services</a>
             <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
             <a href="contact.html" onclick="toggleMenu()">Contact Us</a>
         </div>
@@ -541,7 +651,7 @@
 
             <div class="services-grid">
                 
-                <div class="service-card reveal hover-link" style="transition-delay: 0s;">
+                <div class="service-card reveal hover-link" style="transition-delay: 0s;" onclick="window.location.href='services.html#customs'">
                     <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop" 
                          alt="Customs Clearance" class="service-bg-img" loading="lazy">
                     <div class="service-overlay"></div>
@@ -554,7 +664,7 @@
                     </div>
                 </div>
 
-                <div class="service-card reveal hover-link" style="transition-delay: 0.15s;">
+                <div class="service-card reveal hover-link" style="transition-delay: 0.1s;" onclick="window.location.href='services.html#air'">
                     <img src="https://images.unsplash.com/photo-1588652266858-616900994f3c?q=80&w=2070&auto=format&fit=crop" 
                          alt="Air Freight" class="service-bg-img" loading="lazy">
                     <div class="service-overlay"></div>
@@ -567,7 +677,7 @@
                     </div>
                 </div>
 
-                <div class="service-card reveal hover-link" style="transition-delay: 0.3s;">
+                <div class="service-card reveal hover-link" style="transition-delay: 0.2s;" onclick="window.location.href='services.html#ocean'">
                     <img src="https://images.unsplash.com/photo-1547402633-5c0663738cb3?q=80&w=2070&auto=format&fit=crop" 
                          alt="Ocean Freight" class="service-bg-img" loading="lazy">
                     <div class="service-overlay"></div>
@@ -580,7 +690,7 @@
                     </div>
                 </div>
 
-                <div class="service-card reveal hover-link" style="transition-delay: 0.45s;">
+                <div class="service-card reveal hover-link" style="transition-delay: 0.3s;" onclick="window.location.href='services.html#surface'">
                     <img src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=2070&auto=format&fit=crop" 
                          alt="Surface Transport" class="service-bg-img" loading="lazy">
                     <div class="service-overlay"></div>
@@ -589,6 +699,32 @@
                         <div class="service-icon"><i class="fa-solid fa-truck-fast"></i></div>
                         <h3>Surface Transport</h3>
                         <p>Pan-India GPS-enabled fleet for secure last-mile delivery. Seamless connection from port to your warehouse doorstep.</p>
+                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <div class="service-card reveal hover-link" style="transition-delay: 0.4s;" onclick="window.location.href='services.html#movers'">
+                    <img src="https://images.unsplash.com/photo-1600514127738-228ca57c4c48?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Packers & Movers" class="service-bg-img" loading="lazy">
+                    <div class="service-overlay"></div>
+
+                    <div class="service-content-wrapper">
+                        <div class="service-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                        <h3>Packers & Movers</h3>
+                        <p>Door-to-door packing, relocation, and secure transport for homes and offices across India.</p>
+                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <div class="service-card reveal hover-link" style="transition-delay: 0.5s;" onclick="window.location.href='services.html#pet'">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Pet Relocation" class="service-bg-img" loading="lazy">
+                    <div class="service-overlay"></div>
+
+                    <div class="service-content-wrapper">
+                        <div class="service-icon"><i class="fa-solid fa-paw"></i></div>
+                        <h3>Pet Relocation</h3>
+                        <p>End-to-end pet relocation including documentation, quarantine support, and airline coordination.</p>
                         <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 </div>
@@ -718,21 +854,6 @@
         </div>
     </section>
 
-    <section class="container">
-        <div class="cta-banner hover-link">
-            <div class="cta-content">
-                <h2>Ready to move your cargo?</h2>
-                <p>Get a competitive quote within 24 hours. Our team is ready to analyze your logistics needs and provide the most efficient route.</p>
-                <a href="contact.html" class="big-cta-btn">
-                    Get a Free Quote <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <div style="margin-top: 30px; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-                    <i class="fa-solid fa-phone"></i> Prefer to talk? Call us at +91 11 2544 1234
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -744,7 +865,7 @@
                     <h4>Company</h4>
                     <ul>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
+                        <li><a href="services.html">Services</a></li>
                         <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
@@ -879,6 +1000,28 @@
                 }
             });
         });
-    </script>
+
+        // 7. Mobile Dropdown Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdownTrigger = document.querySelector('.dropdown-trigger');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if(dropdownTrigger && window.innerWidth <= 968) {
+                dropdownTrigger.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop jump to top
+                    dropdownMenu.classList.toggle('active');
+                    
+                    // Rotate chevron
+                    const icon = dropdownTrigger.querySelector('i');
+                    if(dropdownMenu.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                    icon.style.transition = 'transform 0.3s';
+                });
+            }
+        });
+    </script> 
 </body>
 </html>
