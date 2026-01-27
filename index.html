@@ -87,11 +87,12 @@
         .menu { display: flex; gap: 40px; list-style: none; align-items: center; }
         .menu a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; position: relative; }
         .menu a:hover { color: var(--brand-cyan); }
-        .menu a::after {
+.menu a:not(.btn-quote)::after {
             content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
             background: var(--brand-cyan); transition: width 0.3s ease;
         }
-        .menu a:hover::after { width: 100%; }
+        .menu a:not(.btn-quote)::after { width: 0; } /* Reset default width */
+        .menu a:not(.btn-quote):hover::after { width: 100%; }
         
         .btn-quote {
             padding: 14px 32px; background: linear-gradient(135deg, var(--brand-navy), #2a2c85);
