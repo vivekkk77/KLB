@@ -1,1028 +1,2303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>K.L. Bhrara & Co. Pvt Ltd | Premium Global Logistics</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/globe.gl"></script>
 
     <style>
-        /* =========================================
+      /* =========================================
            1. CORE VARIABLES & RESET
            ========================================= */
-        :root {
-            /* LOGO COLORS */
-            --brand-navy: #1F2060;     /* Deep Indigo/Navy */
-            --brand-cyan: #009FE3;     /* Bright Cyan */
-            --brand-accent: #C5A059;   /* Premium Gold */
-            --brand-dark: #0f1035;
-            
-            /* NEUTRALS */
-            --white: #FFFFFF;
-            --off-white: #F8F9FC;
-            --text-main: #1A1A2E;
-            --text-muted: #58677C;
-            
-            /* UI ELEMENTS */
-            --shadow-card: 0 15px 35px rgba(31, 32, 96, 0.08);
-            --shadow-glow: 0 0 20px rgba(0, 159, 227, 0.3);
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+      :root {
+        /* LOGO COLORS */
+        --brand-navy: #1f2060; /* Deep Indigo/Navy */
+        --brand-cyan: #009fe3; /* Bright Cyan */
+        --brand-accent: #c5a059; /* Premium Gold */
+        --brand-dark: #0f1035;
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        /* NEUTRALS */
+        --white: #ffffff;
+        --off-white: #f8f9fc;
+        --text-main: #1a1a2e;
+        --text-muted: #58677c;
 
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: var(--off-white);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        /* UI ELEMENTS */
+        --shadow-card: 0 15px 35px rgba(31, 32, 96, 0.08);
+        --shadow-glow: 0 0 20px rgba(0, 159, 227, 0.3);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
 
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--brand-navy); line-height: 1.2; }
-        
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; }
-        
-        /* Utilities */
-        .text-cyan { color: var(--brand-cyan); }
-        .text-gold { color: var(--brand-accent); }
-        .section-header { text-align: center; margin-bottom: 70px; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .section-header h2 { font-size: 2.8rem; margin-bottom: 16px; }
-        .section { padding: 120px 0; }
-        
-        /* Animation Utility */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease-smooth); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
 
-        /* =========================================
+      body {
+        font-family: "Manrope", sans-serif;
+        background-color: var(--off-white);
+        color: var(--text-main);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--brand-navy);
+        line-height: 1.2;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+      }
+
+      /* Utilities */
+      .text-cyan {
+        color: var(--brand-cyan);
+      }
+      .text-gold {
+        color: var(--brand-accent);
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .section-header h2 {
+        font-size: 2.8rem;
+        margin-bottom: 16px;
+      }
+      .section {
+        padding: 120px 0;
+      }
+
+      /* Animation Utility */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s var(--ease-smooth);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================
            2. NAVIGATION
            ========================================= */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 0;
-            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 1000; transition: all 0.4s var(--ease-smooth);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-        }
-        nav.scrolled { padding: 12px 0; background: rgba(255, 255, 255, 0.95); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 0;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      nav.scrolled {
+        padding: 12px 0;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
 
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo { text-decoration: none; display: flex; align-items: center; gap: 15px; }
-        .brand-logo { height: 50px; width: auto; object-fit: contain; }
-        .logo-text {
-            font-family: 'Playfair Display', serif; font-size: 1.5rem; 
-            font-weight: 700; color: var(--brand-navy); line-height: 1;
-            display: flex; flex-direction: column; justify-content: center;
-        }
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .menu { display: flex; gap: 40px; list-style: none; align-items: center; }
-        .menu a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; position: relative; }
-        .menu a:hover { color: var(--brand-cyan); }
-.menu a:not(.btn-quote)::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
-            background: var(--brand-cyan); transition: width 0.3s ease;
-        }
-        .menu a:not(.btn-quote)::after { width: 0; } /* Reset default width */
-        .menu a:not(.btn-quote):hover::after { width: 100%; }
-        
-        .btn-quote {
-            padding: 14px 32px; background: linear-gradient(135deg, var(--brand-navy), #2a2c85);
-            color: white !important; border-radius: 50px; font-weight: 600;
-            box-shadow: 0 8px 20px rgba(31, 32, 96, 0.25); transition: transform 0.3s var(--ease-elastic);
-            border: 1px solid transparent;
-        }
-        .btn-quote:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 30px rgba(31, 32, 96, 0.35); }
+      .logo {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .brand-logo {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+      }
+      .logo-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--brand-navy);
+        line-height: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-        .mobile-toggle { display: none; font-size: 1.5rem; color: var(--brand-navy); cursor: pointer; }
+      .menu {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        align-items: center;
+      }
+      .menu a {
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: 0.3s;
+        position: relative;
+      }
+      .menu a:hover {
+        color: var(--brand-cyan);
+      }
+      .menu a:not(.btn-quote)::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: var(--brand-cyan);
+        transition: width 0.3s ease;
+      }
+      .menu a:not(.btn-quote)::after {
+        width: 0;
+      } /* Reset default width */
+      .menu a:not(.btn-quote):hover::after {
+        width: 100%;
+      }
 
-        /* DROPDOWN CONTAINER */
-        .nav-item-dropdown {
-            position: relative;
-            padding: 10px 0;
-        }
+      .btn-quote {
+        padding: 14px 32px;
+        background: linear-gradient(135deg, var(--brand-navy), #2a2c85);
+        color: white !important;
+        border-radius: 50px;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(31, 32, 96, 0.25);
+        transition: transform 0.3s var(--ease-elastic);
+        border: 1px solid transparent;
+      }
+      .btn-quote:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(31, 32, 96, 0.35);
+      }
 
-        /* THE DROPDOWN BOX */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background: white;
-            min-width: 280px;
-            padding: 12px 0;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(31, 32, 96, 0.15);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1100;
-            border: 1px solid rgba(0,0,0,0.05);
-            list-style: none;
-        }
+      .mobile-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--brand-navy);
+        cursor: pointer;
+      }
 
-        /* POINTER ARROW */
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-left: 1px solid rgba(0,0,0,0.05);
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
+      /* DROPDOWN CONTAINER */
+      .nav-item-dropdown {
+        position: relative;
+        padding: 10px 0;
+      }
 
-        /* SHOW ON HOVER */
-        .nav-item-dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
+      /* THE DROPDOWN BOX */
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: white;
+        min-width: 280px;
+        padding: 12px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(31, 32, 96, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1100;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        list-style: none;
+      }
 
-        /* DROPDOWN LINKS */
-        .dropdown-menu li { display: block; margin: 0; }
+      /* POINTER ARROW */
+      .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 12px;
+        height: 12px;
+        background: white;
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
 
-        .dropdown-menu a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 24px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
+      /* SHOW ON HOVER */
+      .nav-item-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
 
-        /* Remove underline effect from main menu for dropdown items */
-        .dropdown-menu a::after { display: none; }
+      /* DROPDOWN LINKS */
+      .dropdown-menu li {
+        display: block;
+        margin: 0;
+      }
 
-        .dropdown-menu a i:first-child {
-            width: 24px;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+        color: var(--text-main);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+      }
 
-        .arrow-hover {
-            opacity: 0;
-            transform: translateX(-5px);
-            transition: all 0.2s;
-            font-size: 0.8em;
-            color: var(--brand-cyan);
-        }
+      /* Remove underline effect from main menu for dropdown items */
+      .dropdown-menu a::after {
+        display: none;
+      }
 
-        /* LINK HOVER STATE */
-        .dropdown-menu a:hover {
-            background: #F0F9FF;
-            color: var(--brand-cyan);
-            border-left-color: var(--brand-cyan);
-            padding-left: 28px;
-        }
+      .dropdown-menu a i:first-child {
+        width: 24px;
+        color: var(--text-muted);
+        transition: color 0.2s;
+      }
 
-        .dropdown-menu a:hover i:first-child { color: var(--brand-cyan); }
-        .dropdown-menu a:hover .arrow-hover { opacity: 1; transform: translateX(0); }
+      .arrow-hover {
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: all 0.2s;
+        font-size: 0.8em;
+        color: var(--brand-cyan);
+      }
 
-        /* Mobile Nav */
-        .mobile-menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(31, 32, 96, 0.98); z-index: 999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.4s ease; backdrop-filter: blur(10px);
-        }
-        .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
-        .mobile-links a { display: block; color: white; font-size: 2rem; margin: 20px 0; text-decoration: none; font-family: 'Playfair Display'; }
+      /* LINK HOVER STATE */
+      .dropdown-menu a:hover {
+        background: #f0f9ff;
+        color: var(--brand-cyan);
+        border-left-color: var(--brand-cyan);
+        padding-left: 28px;
+      }
 
-        /* =========================================
+      .dropdown-menu a:hover i:first-child {
+        color: var(--brand-cyan);
+      }
+      .dropdown-menu a:hover .arrow-hover {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Mobile Nav */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(31, 32, 96, 0.98);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s ease;
+        backdrop-filter: blur(10px);
+      }
+      .mobile-menu-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .mobile-links a {
+        display: block;
+        color: white;
+        font-size: 2rem;
+        margin: 20px 0;
+        text-decoration: none;
+        font-family: "Playfair Display";
+      }
+
+      /* =========================================
            3. HERO SECTION
            ========================================= */
-        .hero {
-            position: relative; min-height: 100vh; padding-top: 100px;
-            display: flex; align-items: center;
-            background: radial-gradient(circle at 10% 20%, rgba(0, 159, 227, 0.03) 0%, transparent 40%);
-            overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
-            width: 50%; height: 85%;
-            background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            border-radius: 40px 0 0 40px;
-            box-shadow: -20px 0 60px rgba(0,0,0,0.1);
-            z-index: -1; animation: floatImage 8s ease-in-out infinite;
-        }
-        @keyframes floatImage { 0%, 100% { transform: translateY(-50%); } 50% { transform: translateY(-48%); } }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        padding-top: 0;
+        display: flex;
+        align-items: center;
+        background: radial-gradient(
+          circle at 10% 20%,
+          rgba(0, 159, 227, 0.03) 0%,
+          transparent 40%
+        );
+        overflow: hidden;
+      }
+      /* Modified Hero Background to hold the 3D Globe */
+.hero-bg {
+    position: absolute;
+    right: 5%; /* Pull away from the extreme right edge */
+    top: 50%;  /* Move down to vertically center (accounting for navbar) */
+    transform: translateY(-50%); /* Perfect vertical centering */
+    width: 600px; /* Fixed width to keep it contained */
+    height: 600px; /* Fixed height for a perfect square */
+    background: transparent;
+    z-index: 1;
+    overflow: visible; /* Allow glow to show */
+    pointer-events: all;
+    cursor: grab;
+}
 
-        .hero-content { max-width: 650px; padding-bottom: 50px; }
-        .tagline {
-            display: inline-block; padding: 8px 16px; background: rgba(0, 159, 227, 0.08);
-            color: var(--brand-cyan); border-radius: 30px; font-weight: 700; font-size: 0.8rem;
-            margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
-        }
-        .hero h1 { 
-            font-size: 4rem; margin-bottom: 24px; font-weight: 800; 
-            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-cyan) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 90%; }
+      .hero-bg:active {
+        cursor: grabbing;
+      }
 
-        /* Tracking Component */
-        .tracker-container {
-            background: white; padding: 12px; border-radius: 16px;
-            box-shadow: var(--shadow-card); max-width: 500px;
-            border: 1px solid rgba(0,0,0,0.05); position: relative;
+      @keyframes floatImage {
+        0%,
+        100% {
+          transform: translateY(-50%);
         }
-        .tracker-box { display: flex; width: 100%; }
-        .tracker-box input { border: none; padding: 15px; flex: 1; outline: none; font-size: 1rem; color: var(--text-main); font-family: 'Manrope'; }
-        .tracker-box button {
-            background: var(--brand-cyan); color: white; border: none; padding: 0 30px;
-            border-radius: 12px; font-weight: 600; transition: 0.3s;
-            cursor: pointer;
+        50% {
+          transform: translateY(-48%);
         }
-        .tracker-box button:hover { background: #008cc7; }
-        
-        .track-result {
-            margin-top: 15px; padding: 15px; background: #e0f7fa; border-radius: 10px; color: #006064;
-            display: none; font-size: 0.9rem; border-left: 4px solid var(--brand-cyan); animation: slideDown 0.3s ease;
-        }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+      }
 
-        /* =========================================
+      .hero-content {
+        max-width: 600px;
+        margin-left: 5%;
+        position: relative;
+        z-index: 2;
+        padding-bottom: 50px;
+      }
+      .tagline {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(0, 159, 227, 0.08);
+        color: var(--brand-cyan);
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-bottom: 24px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 24px;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--brand-navy) 0%,
+          var(--brand-cyan) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        max-width: 90%;
+      }
+
+      /* Tracking Component */
+      .tracker-container {
+        background: white;
+        padding: 12px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-card);
+        max-width: 500px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+      .tracker-box {
+        display: flex;
+        width: 100%;
+      }
+      .tracker-box input {
+        border: none;
+        padding: 15px;
+        flex: 1;
+        outline: none;
+        font-size: 1rem;
+        color: var(--text-main);
+        font-family: "Manrope";
+      }
+      .tracker-box button {
+        background: var(--brand-cyan);
+        color: white;
+        border: none;
+        padding: 0 30px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .tracker-box button:hover {
+        background: #008cc7;
+      }
+
+      .track-result {
+        margin-top: 15px;
+        padding: 15px;
+        background: #e0f7fa;
+        border-radius: 10px;
+        color: #006064;
+        display: none;
+        font-size: 0.9rem;
+        border-left: 4px solid var(--brand-cyan);
+        animation: slideDown 0.3s ease;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =========================================
            4. STATS & MARQUEE
            ========================================= */
-        .stats-section {
-            background: var(--brand-navy); color: white; padding: 70px 0;
-            margin-top: -50px; position: relative; z-index: 10;
-        }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
-        .stat-item h3 { color: var(--brand-cyan); font-size: 3rem; margin-bottom: 5px; font-family: 'Manrope', sans-serif; font-weight: 800; }
-        .stat-item p { color: rgba(255,255,255,0.7); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+      .stats-section {
+        background: var(--brand-navy);
+        color: white;
+        padding: 70px 0;
+        margin-top: -50px;
+        position: relative;
+        z-index: 10;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        text-align: center;
+      }
+      .stat-item h3 {
+        color: var(--brand-cyan);
+        font-size: 3rem;
+        margin-bottom: 5px;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+      }
+      .stat-item p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
 
-        .partners-section { padding: 40px 0; background: white; overflow: hidden; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .marquee-container { display: flex; width: 100%; overflow: hidden; white-space: nowrap; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-        .marquee-content { display: flex; animation: scroll 40s linear infinite; }
-        .marquee-content:hover { animation-play-state: paused; }
-        .partner-logo {
-            margin: 0 50px; font-family: 'Playfair Display', serif; font-size: 1.4rem;
-            color: #cbd5e1; font-weight: 700; display: flex; align-items: center; gap: 12px;
-            filter: grayscale(100%); opacity: 0.6; transition: 0.3s;
-            cursor: default;
+      .partners-section {
+        padding: 40px 0;
+        background: white;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .marquee-container {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 10%,
+          black 90%,
+          transparent
+        );
+      }
+      .marquee-content {
+        display: flex;
+        animation: scroll 40s linear infinite;
+      }
+      .marquee-content:hover {
+        animation-play-state: paused;
+      }
+      .partner-logo {
+        margin: 0 50px;
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: #cbd5e1;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: 0.3s;
+        cursor: default;
+      }
+      .partner-logo:hover {
+        filter: grayscale(0);
+        opacity: 1;
+        color: var(--brand-navy);
+        transform: scale(1.05);
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
         }
-        .partner-logo:hover { filter: grayscale(0); opacity: 1; color: var(--brand-navy); transform: scale(1.05); }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
 
-        /* =========================================
+      /* =========================================
            5. PROCESS TIMELINE
            ========================================= */
-        .process-section { background: white; }
-        .process-steps { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
-        .process-steps::before {
-            content: ''; position: absolute; top: 30px; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(to right, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent); z-index: 1;
-        }
-        .step-card {
-            position: relative; z-index: 2; background: white; width: 22%;
-            padding: 20px; text-align: center; transition: 0.3s;
-        }
-        .step-icon {
-            width: 60px; height: 60px; margin: 0 auto 20px;
-            background: var(--brand-navy); color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; border: 6px solid white; box-shadow: 0 0 0 2px var(--brand-cyan);
-            transition: 0.5s var(--ease-elastic);
-        }
-        .step-card:hover .step-icon {
-            background: var(--brand-cyan); transform: scale(1.15);
-            box-shadow: 0 0 0 8px rgba(0, 159, 227, 0.15);
-        }
-        .step-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
-        .step-card p { font-size: 0.95rem; color: var(--text-muted); }
+      .process-section {
+        background: white;
+      }
+      .process-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-top: 60px;
+      }
+      .process-steps::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          #e0e0e0 20%,
+          #e0e0e0 80%,
+          transparent
+        );
+        z-index: 1;
+      }
+      .step-card {
+        position: relative;
+        z-index: 2;
+        background: white;
+        width: 22%;
+        padding: 20px;
+        text-align: center;
+        transition: 0.3s;
+      }
+      .step-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 20px;
+        background: var(--brand-navy);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        border: 6px solid white;
+        box-shadow: 0 0 0 2px var(--brand-cyan);
+        transition: 0.5s var(--ease-elastic);
+      }
+      .step-card:hover .step-icon {
+        background: var(--brand-cyan);
+        transform: scale(1.15);
+        box-shadow: 0 0 0 8px rgba(0, 159, 227, 0.15);
+      }
+      .step-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+      .step-card p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
 
-        /* =========================================
+      /* =========================================
            6. PREMIUM ENTERPRISE SERVICES
            ========================================= */
-        .services-grid { gap: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .services-grid {
+        gap: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
 
-        .service-card {
-            position: relative; height: 500px; border-radius: var(--radius-lg); overflow: hidden; isolation: isolate;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.5s var(--ease-elastic);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 0;
-            background: #0a1018;
-            cursor: pointer;
-        }
-        
-        .service-bg-img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s var(--ease-smooth); z-index: -2; opacity: 0.9;
-        }
+      .service-card {
+        position: relative;
+        height: 500px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        isolation: isolate;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.5s var(--ease-elastic);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0;
+        background: #0a1018;
+        cursor: pointer;
+      }
 
-        .service-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.8) 50%, rgba(10, 25, 47, 0.95) 100%);
-            z-index: -1;
-        }
+      .service-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s var(--ease-smooth);
+        z-index: -2;
+        opacity: 0.9;
+      }
 
-        .service-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); }
-        .service-card:hover .service-bg-img { transform: scale(1.15); }
+      .service-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 25, 47, 0.1) 0%,
+          rgba(10, 25, 47, 0.8) 50%,
+          rgba(10, 25, 47, 0.95) 100%
+        );
+        z-index: -1;
+      }
 
-        .service-content-wrapper {
-            position: relative; z-index: 2; padding: 36px; color: white;
-            transform: translateY(0); transition: transform 0.4s var(--ease-smooth);
-        }
+      .service-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      }
+      .service-card:hover .service-bg-img {
+        transform: scale(1.15);
+      }
 
-        .service-icon {
-            width: 70px; height: 70px; background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--brand-cyan); margin-bottom: 24px;
-            transition: all 0.4s var(--ease-elastic);
-        }
-        .service-card:hover .service-icon {
-            transform: rotate(10deg) scale(1.1); background: rgba(255, 255, 255, 0.2); 
-            color: white; box-shadow: 0 0 30px rgba(0, 159, 227, 0.5); border-color: rgba(255,255,255,0.5);
-        }
+      .service-content-wrapper {
+        position: relative;
+        z-index: 2;
+        padding: 36px;
+        color: white;
+        transform: translateY(0);
+        transition: transform 0.4s var(--ease-smooth);
+      }
 
-        .service-card h3 {
-            color: white; font-size: 1.6rem; margin-bottom: 12px;
-            font-family: 'Playfair Display', serif; transition: transform 0.4s ease;
-        }
-        .service-card:hover h3 { transform: translateX(8px); }
-        .service-card p { color: rgba(255, 255, 255, 0.8); font-size: 1rem; line-height: 1.6; }
+      .service-icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--brand-cyan);
+        margin-bottom: 24px;
+        transition: all 0.4s var(--ease-elastic);
+      }
+      .service-card:hover .service-icon {
+        transform: rotate(10deg) scale(1.1);
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        box-shadow: 0 0 30px rgba(0, 159, 227, 0.5);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
 
-        .service-link {
-            margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
-            color: var(--brand-accent); font-weight: 700; font-size: 0.9rem;
-            opacity: 0; transform: translateY(20px); transition: all 0.4s 0.1s var(--ease-smooth);
-        }
-        .service-card:hover .service-link { opacity: 1; transform: translateY(0); }
+      .service-card h3 {
+        color: white;
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        font-family: "Playfair Display", serif;
+        transition: transform 0.4s ease;
+      }
+      .service-card:hover h3 {
+        transform: translateX(8px);
+      }
+      .service-card p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
 
-        /* =========================================
+      .service-link {
+        margin-top: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--brand-accent);
+        font-weight: 700;
+        font-size: 0.9rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s 0.1s var(--ease-smooth);
+      }
+      .service-card:hover .service-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================
            7. PET RELOCATION
            ========================================= */
+      .pet-usp {
+        background: #fff;
+        border-radius: 40px;
+        padding: 80px;
+        box-shadow: var(--shadow-card);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+      }
+      .pet-usp::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border: 2px dashed var(--brand-cyan);
+        border-radius: 50%;
+        left: -150px;
+        top: -150px;
+        opacity: 0.1;
+        animation: spin 30s linear infinite;
+      }
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .pet-image-wrapper {
+        position: relative;
+      }
+      .pet-image-wrapper img {
+        border-radius: 30px;
+        width: 100%;
+        display: block;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      .pet-badge {
+        position: absolute;
+        bottom: 40px;
+        right: -30px;
+        background: white;
+        padding: 15px 30px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        animation: bounce 3s infinite ease-in-out;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* =========================================
+           8. TESTIMONIALS & SLIDER
+           ========================================= */
+      .reviews-section {
+        background: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")
+          fixed center/cover;
+        position: relative;
+      }
+      .reviews-overlay {
+        background: rgba(15, 32, 67, 0.92);
+        position: absolute;
+        inset: 0;
+      }
+      .review-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        color: white;
+        transition: 0.3s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .review-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--brand-cyan);
+      }
+      .stars {
+        color: var(--brand-accent);
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+      .client-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 25px;
+      }
+      .client-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #ddd;
+        object-fit: cover;
+      }
+
+      /* --- NEW SLIDER CSS --- */
+      .slider {
+        width: 100%;
+        height: var(--height);
+        overflow: hidden;
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 10% 90%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 10% 90%,
+          transparent
+        );
+        position: relative;
+        z-index: 2;
+      }
+      .slider .list {
+        display: flex;
+        width: 100%;
+        min-width: calc(var(--width) * var(--quantity));
+        position: relative;
+      }
+      .slider .list .item {
+        width: var(--width);
+        height: var(--height);
+        position: absolute;
+        left: 100%;
+        animation: autoRun 30s linear infinite; /* Increased time for reading text */
+        transition: filter 0.5s;
+        animation-delay: calc(
+          (30s / var(--quantity)) * (var(--position) - 1) - 30s
+        ) !important;
+        padding: 0 15px; /* Spacing between cards */
+      }
+      @keyframes autoRun {
+        from {
+          left: 100%;
+        }
+        to {
+          left: calc(var(--width) * -1);
+        }
+      }
+      .slider:hover .item {
+        animation-play-state: paused !important;
+      }
+
+      /* =========================================
+           9. FAQ
+           ========================================= */
+      .faq-section {
+        background: white;
+      }
+      .accordion-item {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+      }
+      .accordion-header {
+        width: 100%;
+        padding: 24px 10px;
+        text-align: left;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: "Manrope", sans-serif;
+        color: var(--brand-navy);
+        transition: color 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .accordion-header:hover {
+        color: var(--brand-cyan);
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        padding: 0 10px;
+        color: var(--text-muted);
+        font-size: 1rem;
+      }
+      .accordion-item.active .accordion-content {
+        padding-bottom: 24px;
+      }
+      .accordion-item.active i {
+        transform: rotate(180deg);
+        transition: 0.3s;
+        color: var(--brand-cyan);
+      }
+
+      /* =========================================
+           10. FOOTER
+           ========================================= */
+      footer {
+        background: #050505;
+        color: #888;
+        padding: 100px 0 30px;
+      }
+      .footer-logo {
+        font-size: 1.8rem;
+        color: white;
+        font-family: "Playfair Display", serif;
+        margin-bottom: 25px;
+        display: block;
+        text-decoration: none;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 50px;
+        margin-bottom: 70px;
+      }
+      .footer h4 {
+        color: white;
+        margin-bottom: 24px;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.1rem;
+      }
+      .footer ul li {
+        margin-bottom: 14px;
+        list-style: none;
+      }
+      .footer ul li a {
+        color: #888;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 0.95rem;
+      }
+      .footer ul li a:hover {
+        color: var(--brand-cyan);
+        padding-left: 5px;
+      }
+
+      /* Mobile Nav Overrides */
+      @media (max-width: 968px) {
+        .nav-item-dropdown {
+          width: 100%;
+          text-align: center;
+        }
+        .dropdown-menu {
+          position: static;
+          transform: none;
+          opacity: 1;
+          visibility: visible;
+          box-shadow: none;
+          border: none;
+          background: #f8f9fc;
+          width: 100%;
+          display: none;
+          padding: 0;
+          margin-top: 10px;
+        }
+        .dropdown-menu::before {
+          display: none;
+        }
+        .dropdown-menu.active {
+          display: block;
+          animation: slideDown 0.3s ease;
+        }
+        .dropdown-menu a {
+          padding: 15px 20px;
+          justify-content: flex-start;
+          gap: 15px;
+        }
+        .arrow-hover {
+          display: none;
+        }
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .hero {
+          flex-direction: column;
+          padding-top: 120px;
+        }
+.hero-bg {
+        position: relative;
+        width: 100%;
+        height: 350px; /* Smaller on mobile */
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 20px;
+    }
+        .hero-content {
+          margin-left: 0;
+          text-align: center;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+        .process-steps {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .process-steps::before {
+          width: 2px;
+          height: 100%;
+          left: 30px;
+          top: 0;
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            #e0e0e0 20%,
+            #e0e0e0 80%,
+            transparent
+          );
+        }
+        .step-card {
+          width: 100%;
+          text-align: left;
+          padding-left: 80px;
+        }
+        .step-icon {
+          position: absolute;
+          left: 0;
+          margin: 0;
+        }
         .pet-usp {
-            background: #fff; border-radius: 40px; padding: 80px; box-shadow: var(--shadow-card);
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-            overflow: hidden; position: relative; border: 1px solid rgba(0,0,0,0.03);
+          grid-template-columns: 1fr;
+          padding: 40px;
+          gap: 40px;
         }
-        .pet-usp::before {
-            content: ''; position: absolute; width: 500px; height: 500px;
-            border: 2px dashed var(--brand-cyan); border-radius: 50%; left: -150px; top: -150px; opacity: 0.1;
-            animation: spin 30s linear infinite;
+        .pet-image-wrapper {
+          order: -1;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        
-        .pet-image-wrapper { position: relative; }
-        .pet-image-wrapper img { border-radius: 30px; width: 100%; display: block; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .pet-badge {
-            position: absolute; bottom: 40px; right: -30px; background: white;
-            padding: 15px 30px; border-radius: 16px; box-shadow: var(--shadow-card);
-            display: flex; align-items: center; gap: 15px; animation: bounce 3s infinite ease-in-out;
+        .menu {
+          display: none;
         }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .mobile-toggle {
+          display: block;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .brand-logo {
+          height: 40px;
+        }
+        .logo-text {
+          font-size: 1.2rem;
+        }
+      }
+      /* 1. Let clicks pass through the main container overlay */
+.hero .container {
+    pointer-events: none;
+}
 
-        /* =========================================
-           8. TESTIMONIALS & FAQ
-           ========================================= */
-        .reviews-section {
-            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') fixed center/cover;
-            position: relative;
-        }
-        .reviews-overlay { background: rgba(15, 32, 67, 0.92); position: absolute; inset: 0; }
-        .review-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px;
-            border-radius: var(--radius-lg); color: white; transition: 0.3s;
-        }
-        .review-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-8px); border-color: var(--brand-cyan); }
-        .stars { color: var(--brand-accent); margin-bottom: 15px; font-size: 0.9rem; }
-        .client-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; }
-        .client-avatar { width: 50px; height: 50px; border-radius: 50%; background: #ddd; object-fit: cover; }
-
-        .faq-section { background: white; }
-        .accordion-item { border-bottom: 1px solid #eee; margin-bottom: 15px; }
-        .accordion-header {
-            width: 100%; padding: 24px 10px; text-align: left; background: none; border: none;
-            font-size: 1.2rem; font-weight: 700; font-family: 'Manrope', sans-serif;
-            color: var(--brand-navy); transition: color 0.3s; display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer;
-        }
-        .accordion-header:hover { color: var(--brand-cyan); }
-        .accordion-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-            padding: 0 10px; color: var(--text-muted); font-size: 1rem;
-        }
-        .accordion-item.active .accordion-content { padding-bottom: 24px; }
-        .accordion-item.active i { transform: rotate(180deg); transition: 0.3s; color: var(--brand-cyan); }
-
-        /* =========================================
-           9. FOOTER & MOBILE MENU
-           ========================================= */
-        footer { background: #050505; color: #888; padding: 100px 0 30px; }
-        .footer-logo { font-size: 1.8rem; color: white; font-family: 'Playfair Display', serif; margin-bottom: 25px; display: block; text-decoration: none;}
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; margin-bottom: 70px; }
-        .footer h4 { color: white; margin-bottom: 24px; font-family: 'Manrope', sans-serif; font-size: 1.1rem; }
-        .footer ul li { margin-bottom: 14px; list-style: none; }
-        .footer ul li a { color: #888; text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
-        .footer ul li a:hover { color: var(--brand-cyan); padding-left: 5px; }
-
-        /* Mobile Nav Overrides */
-        @media (max-width: 968px) {
-            .nav-item-dropdown { width: 100%; text-align: center; }
-            .dropdown-menu {
-                position: static; transform: none; opacity: 1; visibility: visible;
-                box-shadow: none; border: none; background: #f8f9fc;
-                width: 100%; display: none; padding: 0; margin-top: 10px;
-            }
-            .dropdown-menu::before { display: none; }
-            .dropdown-menu.active { display: block; animation: slideDown 0.3s ease; }
-            .dropdown-menu a { padding: 15px 20px; justify-content: flex-start; gap: 15px; }
-            .arrow-hover { display: none; }
-            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-            
-            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
-            .hero-bg { position: relative; width: 100%; height: 350px; transform: none; right: auto; top: auto; border-radius: 20px; margin-top: 40px; }
-            .hero-content, .tracker-box { margin: 0 auto; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-            .process-steps { flex-direction: column; gap: 40px; }
-            .process-steps::before { width: 2px; height: 100%; left: 30px; top: 0; background: linear-gradient(to bottom, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent);}
-            .step-card { width: 100%; text-align: left; padding-left: 80px; }
-            .step-icon { position: absolute; left: 0; margin: 0; }
-            .pet-usp { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
-            .pet-image-wrapper { order: -1; }
-            .menu { display: none; }
-            .mobile-toggle { display: block; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .brand-logo { height: 40px; }
-            .logo-text { font-size: 1.2rem; }
-        }
+/* 2. Re-enable clicks for the text, inputs, and buttons */
+.hero-content {
+    pointer-events: auto;
+}
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <nav id="navbar">
-        <div class="container nav-wrapper">
-            <a href="#" class="logo">
-                <img src="klb.png" alt="K.L. Bhrara Logo" class="brand-logo">
-                <div class="logo-text">
-                    K.L. Bhrara <span style="font-size: 0.8em; opacity: 0.8; font-family: 'Manrope'; display: block; line-height: 1; font-weight: 400;">& Co. Pvt. Ltd.</span>
-                </div>
-            </a>
-            
-            <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                
-                <li class="nav-item-dropdown">
-                    <a href="services.html" class="dropdown-trigger">
-                        Services <i class="fa-solid fa-chevron-down" style="font-size: 0.7em; margin-left: 6px; opacity: 0.7;"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="services.html#customs">
-                                <i class="fa-solid fa-file-signature"></i> Customs Brokerage
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html#air">
-                                <i class="fa-solid fa-plane-departure"></i> Air Freight
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html#ocean">
-                                <i class="fa-solid fa-ship"></i> Ocean Freight
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html#surface">
-                                <i class="fa-solid fa-truck-fast"></i> Surface Transport
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html#movers">
-                                <i class="fa-solid fa-boxes-packing"></i> Packers & Movers
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html#pet">
-                                <i class="fa-solid fa-paw"></i> Pet Relocation
-                                <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li><a href="index.html#faq">FAQ</a></li>
-                <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
-            </ul>
+      <div class="container nav-wrapper">
+        <a href="#" class="logo">
+          <img src="klb.png" alt="K.L. Bhrara Logo" class="brand-logo" />
+          <div class="logo-text">
+            K.L. Bhrara
+            <span
+              style="
+                font-size: 0.8em;
+                opacity: 0.8;
+                font-family: 'Manrope';
+                display: block;
+                line-height: 1;
+                font-weight: 400;
+              "
+              >& Co. Pvt. Ltd.</span
+            >
+          </div>
+        </a>
 
-            <div class="mobile-toggle">
-                <i class="fa-solid fa-bars"></i>
-            </div>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+
+          <li class="nav-item-dropdown">
+            <a href="services.html" class="dropdown-trigger">
+              Services
+              <i
+                class="fa-solid fa-chevron-down"
+                style="font-size: 0.7em; margin-left: 6px; opacity: 0.7"
+              ></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="services.html#customs">
+                  <i class="fa-solid fa-file-signature"></i> Customs Brokerage
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#air">
+                  <i class="fa-solid fa-plane-departure"></i> Air Freight
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#ocean">
+                  <i class="fa-solid fa-ship"></i> Ocean Freight
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#surface">
+                  <i class="fa-solid fa-truck-fast"></i> Surface Transport
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#movers">
+                  <i class="fa-solid fa-boxes-packing"></i> Packers & Movers
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#pet">
+                  <i class="fa-solid fa-paw"></i> Pet Relocation
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
+        </ul>
+
+        <div class="mobile-toggle">
+          <i class="fa-solid fa-bars"></i>
         </div>
+      </div>
     </nav>
 
     <div class="mobile-menu-overlay">
-        <div class="mobile-links">
-            <a href="#about" onclick="toggleMenu()">Process</a>
-            <a href="services.html" onclick="toggleMenu()">Services</a>
-            <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
-            <a href="contact.html" onclick="toggleMenu()">Contact Us</a>
-        </div>
-        <div style="margin-top: 30px; font-size: 2rem; color: white; cursor: pointer;" onclick="toggleMenu()">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
+      <div class="mobile-links">
+        <a href="#about" onclick="toggleMenu()">Process</a>
+        <a href="services.html" onclick="toggleMenu()">Services</a>
+        <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
+        <a href="contact.html" onclick="toggleMenu()">Contact Us</a>
+      </div>
+      <div
+        style="margin-top: 30px; font-size: 2rem; color: white; cursor: pointer"
+        onclick="toggleMenu()"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
     </div>
 
     <section class="hero">
-        <div class="container" style="position: relative; z-index: 2; width: 100%;">
-            <div class="hero-content reveal active">
-                <span class="tagline">Est. 1968 • New Delhi</span>
-                <h1>Seamless Global Logistics Solutions</h1>
-                <p>We combine 50 years of family legacy with modern freight technology. Air, Sea, and Customs Brokerage tailored for your business speed.</p>
-                
-                <div class="tracker-container hover-link">
-                    <div class="tracker-box">
-                        <input type="text" id="trackingInput" placeholder="Enter AWB or Container Number...">
-                        <button id="trackBtn" onclick="simulateTracking()">Track</button>
-                    </div>
-                    <div class="track-result" id="trackResult">
-                        <i class="fa-solid fa-circle-check"></i> <strong>Result Found:</strong> Shipment #4492 is currently <b>In Transit</b> (Arriving Delhi: 2 Days).
-                    </div>
-                </div>
+      <div class="container" style="position: relative; z-index: 2; width: 100%">
+        <div class="hero-content reveal active">
+          <span class="tagline">Est. 1968 • New Delhi</span>
+          <h1>Seamless Global Logistics Solutions</h1>
+          <p>
+            We combine 50 years of family legacy with modern freight technology.
+            Air, Sea, and Customs Brokerage tailored for your business speed.
+          </p>
+
+          <div class="tracker-container hover-link">
+            <div class="tracker-box">
+              <input
+                type="text"
+                id="trackingInput"
+                placeholder="Enter AWB or Container Number..."
+              />
+              <button id="trackBtn" onclick="simulateTracking()">Track</button>
             </div>
+            <div class="track-result" id="trackResult">
+              <i class="fa-solid fa-circle-check"></i>
+              <strong>Result Found:</strong> Shipment #4492 is currently
+              <b>In Transit</b> (Arriving Delhi: 2 Days).
+            </div>
+          </div>
         </div>
-        <div class="hero-bg"></div>
+      </div>
+      <div class="hero-bg" id="globeViz"></div>
     </section>
 
     <section class="stats-section">
-        <div class="container stats-grid">
-            <div class="stat-item reveal">
-                <h3 class="counter" data-target="55">0</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat-item reveal" style="transition-delay: 0.1s;">
-                <h3 class="counter" data-target="120">0</h3>
-                <p>Global Partners</p>
-            </div>
-            <div class="stat-item reveal" style="transition-delay: 0.2s;">
-                <h3 class="counter" data-target="15000">0</h3>
-                <p>Shipments Yearly</p>
-            </div>
-            <div class="stat-item reveal" style="transition-delay: 0.3s;">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>% Compliance</p>
-            </div>
+      <div class="container stats-grid">
+        <div class="stat-item reveal">
+          <h3 class="counter" data-target="55">0</h3>
+          <p>Years Experience</p>
         </div>
+        <div class="stat-item reveal" style="transition-delay: 0.1s">
+          <h3 class="counter" data-target="120">0</h3>
+          <p>Global Partners</p>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.2s">
+          <h3 class="counter" data-target="15000">0</h3>
+          <p>Shipments Yearly</p>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.3s">
+          <h3 class="counter" data-target="100">0</h3>
+          <p>% Compliance</p>
+        </div>
+      </div>
     </section>
 
     <section class="partners-section">
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <div class="partner-logo"><i class="fa-solid fa-plane"></i> LUFTHANSA CARGO</div>
-                <div class="partner-logo"><i class="fa-solid fa-ship"></i> MAERSK LINE</div>
-                <div class="partner-logo"><i class="fa-solid fa-plane-up"></i> EMIRATES SKYCARGO</div>
-                <div class="partner-logo"><i class="fa-solid fa-anchor"></i> MSC SHIPPING</div>
-                <div class="partner-logo"><i class="fa-solid fa-box"></i> FEDEX LOGISTICS</div>
-                <div class="partner-logo"><i class="fa-solid fa-plane"></i> CATHAY PACIFIC</div>
-                <div class="partner-logo"><i class="fa-solid fa-plane"></i> LUFTHANSA CARGO</div>
-                <div class="partner-logo"><i class="fa-solid fa-ship"></i> MAERSK LINE</div>
-                <div class="partner-logo"><i class="fa-solid fa-plane-up"></i> EMIRATES SKYCARGO</div>
-                <div class="partner-logo"><i class="fa-solid fa-anchor"></i> MSC SHIPPING</div>
-                <div class="partner-logo"><i class="fa-solid fa-box"></i> FEDEX LOGISTICS</div>
-            </div>
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <div class="partner-logo">
+            <i class="fa-solid fa-plane"></i> LUFTHANSA CARGO
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-ship"></i> MAERSK LINE
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-plane-up"></i> EMIRATES SKYCARGO
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-anchor"></i> MSC SHIPPING
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-box"></i> FEDEX LOGISTICS
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-plane"></i> CATHAY PACIFIC
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-plane"></i> LUFTHANSA CARGO
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-ship"></i> MAERSK LINE
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-plane-up"></i> EMIRATES SKYCARGO
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-anchor"></i> MSC SHIPPING
+          </div>
+          <div class="partner-logo">
+            <i class="fa-solid fa-box"></i> FEDEX LOGISTICS
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="about" class="section process-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h4 class="text-cyan" style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;">Workflow</h4>
-                <h2>From Origin to Destination</h2>
-            </div>
-
-            <div class="process-steps">
-                <div class="step-card reveal hover-link">
-                    <div class="step-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                    <h4>1. Documentation</h4>
-                    <p>We analyze invoices & packing lists to determine correct HS Codes.</p>
-                </div>
-                <div class="step-card reveal hover-link" style="transition-delay: 0.2s;">
-                    <div class="step-icon"><i class="fa-solid fa-box-open"></i></div>
-                    <h4>2. Pick Up</h4>
-                    <p>Cargo is collected from the supplier's warehouse and moved to port.</p>
-                </div>
-                <div class="step-card reveal hover-link" style="transition-delay: 0.4s;">
-                    <div class="step-icon"><i class="fa-solid fa-stamp"></i></div>
-                    <h4>3. Customs Clearance</h4>
-                    <p>We file the Bill of Entry and pay duties on your behalf instantly.</p>
-                </div>
-                <div class="step-card reveal hover-link" style="transition-delay: 0.6s;">
-                    <div class="step-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                    <h4>4. Delivery</h4>
-                    <p>Goods are loaded onto our trucks and delivered to your doorstep.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <h4
+            class="text-cyan"
+            style="
+              text-transform: uppercase;
+              font-size: 0.9rem;
+              letter-spacing: 2px;
+            "
+          >
+            Workflow
+          </h4>
+          <h2>From Origin to Destination</h2>
         </div>
+
+        <div class="process-steps">
+          <div class="step-card reveal hover-link">
+            <div class="step-icon">
+              <i class="fa-solid fa-file-invoice"></i>
+            </div>
+            <h4>1. Documentation</h4>
+            <p>
+              We analyze invoices & packing lists to determine correct HS Codes.
+            </p>
+          </div>
+          <div
+            class="step-card reveal hover-link"
+            style="transition-delay: 0.2s"
+          >
+            <div class="step-icon"><i class="fa-solid fa-box-open"></i></div>
+            <h4>2. Pick Up</h4>
+            <p>
+              Cargo is collected from the supplier's warehouse and moved to
+              port.
+            </p>
+          </div>
+          <div
+            class="step-card reveal hover-link"
+            style="transition-delay: 0.4s"
+          >
+            <div class="step-icon"><i class="fa-solid fa-stamp"></i></div>
+            <h4>3. Customs Clearance</h4>
+            <p>
+              We file the Bill of Entry and pay duties on your behalf instantly.
+            </p>
+          </div>
+          <div
+            class="step-card reveal hover-link"
+            style="transition-delay: 0.6s"
+          >
+            <div class="step-icon">
+              <i class="fa-solid fa-truck-ramp-box"></i>
+            </div>
+            <h4>4. Delivery</h4>
+            <p>
+              Goods are loaded onto our trucks and delivered to your doorstep.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="services" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h4 class="text-cyan" style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;">Global Solutions</h4>
-                <h2>Comprehensive Logistics Expertise</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">From complex documentation to last-mile delivery, we handle the details so you can focus on growth.</p>
-            </div>
-
-            <div class="services-grid">
-                
-                <div class="service-card reveal hover-link" style="transition-delay: 0s;" onclick="window.location.href='services.html#customs'">
-                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Customs Clearance" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-                    
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-file-signature"></i></div>
-                        <h3>Customs Brokerage</h3>
-                        <p>End-to-end Indian customs clearance with zero-delay compliance. We navigate the "Red Tape" so your cargo never stops moving.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal hover-link" style="transition-delay: 0.1s;" onclick="window.location.href='services.html#air'">
-                    <img src="https://images.unsplash.com/photo-1588652266858-616900994f3c?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Air Freight" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-plane-departure"></i></div>
-                        <h3>Air Freight</h3>
-                        <p>Priority global air logistics with IATA-compliant handling. Express solutions for general cargo, perishables, and DG.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal hover-link" style="transition-delay: 0.2s;" onclick="window.location.href='services.html#ocean'">
-                    <img src="https://images.unsplash.com/photo-1547402633-5c0663738cb3?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Ocean Freight" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
-                        <h3>Ocean Freight</h3>
-                        <p>Scalable FCL/LCL ocean solutions with end-to-end container tracking. Cost-effective routing across major global ports.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal hover-link" style="transition-delay: 0.3s;" onclick="window.location.href='services.html#surface'">
-                    <img src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Surface Transport" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                        <h3>Surface Transport</h3>
-                        <p>Pan-India GPS-enabled fleet for secure last-mile delivery. Seamless connection from port to your warehouse doorstep.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal hover-link" style="transition-delay: 0.4s;" onclick="window.location.href='services.html#movers'">
-                    <img src="https://images.unsplash.com/photo-1600514127738-228ca57c4c48?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Packers & Movers" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-boxes-packing"></i></div>
-                        <h3>Packers & Movers</h3>
-                        <p>Door-to-door packing, relocation, and secure transport for homes and offices across India.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="service-card reveal hover-link" style="transition-delay: 0.5s;" onclick="window.location.href='services.html#pet'">
-                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Pet Relocation" class="service-bg-img" loading="lazy">
-                    <div class="service-overlay"></div>
-
-                    <div class="service-content-wrapper">
-                        <div class="service-icon"><i class="fa-solid fa-paw"></i></div>
-                        <h3>Pet Relocation</h3>
-                        <p>End-to-end pet relocation including documentation, quarantine support, and airline coordination.</p>
-                        <div class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h4
+            class="text-cyan"
+            style="
+              text-transform: uppercase;
+              font-size: 0.9rem;
+              letter-spacing: 2px;
+            "
+          >
+            Global Solutions
+          </h4>
+          <h2>Comprehensive Logistics Expertise</h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem">
+            From complex documentation to last-mile delivery, we handle the
+            details so you can focus on growth.
+          </p>
         </div>
+
+        <div class="services-grid">
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0s"
+            onclick="window.location.href = 'services.html#customs'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop"
+              alt="Customs Clearance"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <h3>Customs Brokerage</h3>
+              <p>
+                End-to-end Indian customs clearance with zero-delay compliance.
+                We navigate the "Red Tape" so your cargo never stops moving.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0.1s"
+            onclick="window.location.href = 'services.html#air'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1588652266858-616900994f3c?q=80&w=2070&auto=format&fit=crop"
+              alt="Air Freight"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon">
+                <i class="fa-solid fa-plane-departure"></i>
+              </div>
+              <h3>Air Freight</h3>
+              <p>
+                Priority global air logistics with IATA-compliant handling.
+                Express solutions for general cargo, perishables, and DG.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0.2s"
+            onclick="window.location.href = 'services.html#ocean'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1547402633-5c0663738cb3?q=80&w=2070&auto=format&fit=crop"
+              alt="Ocean Freight"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
+              <h3>Ocean Freight</h3>
+              <p>
+                Scalable FCL/LCL ocean solutions with end-to-end container
+                tracking. Cost-effective routing across major global ports.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0.3s"
+            onclick="window.location.href = 'services.html#surface'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=2070&auto=format&fit=crop"
+              alt="Surface Transport"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon">
+                <i class="fa-solid fa-truck-fast"></i>
+              </div>
+              <h3>Surface Transport</h3>
+              <p>
+                Pan-India GPS-enabled fleet for secure last-mile delivery.
+                Seamless connection from port to your warehouse doorstep.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0.4s"
+            onclick="window.location.href = 'services.html#movers'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1600514127738-228ca57c4c48?q=80&w=2070&auto=format&fit=crop"
+              alt="Packers & Movers"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon">
+                <i class="fa-solid fa-boxes-packing"></i>
+              </div>
+              <h3>Packers & Movers</h3>
+              <p>
+                Door-to-door packing, relocation, and secure transport for homes
+                and offices across India.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card reveal hover-link"
+            style="transition-delay: 0.5s"
+            onclick="window.location.href = 'services.html#pet'"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop"
+              alt="Pet Relocation"
+              class="service-bg-img"
+              loading="lazy"
+            />
+            <div class="service-overlay"></div>
+
+            <div class="service-content-wrapper">
+              <div class="service-icon"><i class="fa-solid fa-paw"></i></div>
+              <h3>Pet Relocation</h3>
+              <p>
+                End-to-end pet relocation including documentation, quarantine
+                support, and airline coordination.
+              </p>
+              <div class="service-link">
+                View Details <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="pet" class="section">
-        <div class="container">
-            <div class="pet-usp reveal hover-link">
-                <div class="pet-content">
-                    <div style="background: #e0f7fa; color: #006064; padding: 8px 16px; border-radius: 6px; display: inline-block; font-weight: 700; font-size: 0.8rem; margin-bottom: 25px;">SPECIALTY SERVICE</div>
-                    <h2>Moving your best friend? <br>Leave it to the experts.</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">
-                        We specialize in live animal relocation with utmost care. From veterinary approvals to comfortable crates, we ensure a stress-free journey for your pets.
-                    </p>
-                    <ul style="list-style: none; margin-bottom: 35px;">
-                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center; font-weight: 600;">
-                            <i class="fa-solid fa-check-circle text-cyan"></i> IATA Approved Crates
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center; font-weight: 600;">
-                            <i class="fa-solid fa-check-circle text-cyan"></i> Veterinary Paperwork Assistance
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center; font-weight: 600;">
-                            <i class="fa-solid fa-check-circle text-cyan"></i> Climate Controlled Transit
-                        </li>
-                    </ul>
-                    <a href="contact.html" class="btn-quote" style="display: inline-block;">Relocate My Pet</a>
-                </div>
-                <div class="pet-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop" alt="Dog travel">
-                    <div class="pet-badge">
-                        <i class="fa-solid fa-shield-dog" style="font-size: 2rem; color: var(--brand-navy);"></i>
-                        <div>
-                            <div style="font-weight: 800; color: var(--brand-navy);">100% Safe</div>
-                            <div style="font-size: 0.85rem; color: #666;">Travel Guarantee</div>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="pet-usp reveal hover-link">
+          <div class="pet-content">
+            <div
+              style="
+                background: #e0f7fa;
+                color: #006064;
+                padding: 8px 16px;
+                border-radius: 6px;
+                display: inline-block;
+                font-weight: 700;
+                font-size: 0.8rem;
+                margin-bottom: 25px;
+              "
+            >
+              SPECIALTY SERVICE
             </div>
+            <h2>Moving your best friend? <br />Leave it to the experts.</h2>
+            <p
+              style="
+                color: var(--text-muted);
+                margin-bottom: 30px;
+                font-size: 1.1rem;
+              "
+            >
+              We specialize in live animal relocation with utmost care. From
+              veterinary approvals to comfortable crates, we ensure a
+              stress-free journey for your pets.
+            </p>
+            <ul style="list-style: none; margin-bottom: 35px">
+              <li
+                style="
+                  margin-bottom: 15px;
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  font-weight: 600;
+                "
+              >
+                <i class="fa-solid fa-check-circle text-cyan"></i> IATA Approved
+                Crates
+              </li>
+              <li
+                style="
+                  margin-bottom: 15px;
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  font-weight: 600;
+                "
+              >
+                <i class="fa-solid fa-check-circle text-cyan"></i> Veterinary
+                Paperwork Assistance
+              </li>
+              <li
+                style="
+                  margin-bottom: 15px;
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  font-weight: 600;
+                "
+              >
+                <i class="fa-solid fa-check-circle text-cyan"></i> Climate
+                Controlled Transit
+              </li>
+            </ul>
+            <a
+              href="contact.html"
+              class="btn-quote"
+              style="display: inline-block"
+              >Relocate My Pet</a
+            >
+          </div>
+          <div class="pet-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop"
+              alt="Dog travel"
+            />
+            <div class="pet-badge">
+              <i
+                class="fa-solid fa-shield-dog"
+                style="font-size: 2rem; color: var(--brand-navy)"
+              ></i>
+              <div>
+                <div style="font-weight: 800; color: var(--brand-navy)">
+                  100% Safe
+                </div>
+                <div style="font-size: 0.85rem; color: #666">
+                  Travel Guarantee
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="section reviews-section">
-        <div class="reviews-overlay"></div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header">
-                <h2 style="color: white;">Trusted by Industries</h2>
+      <div class="reviews-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2; overflow: hidden;">
+        <div class="section-header">
+          <h2 style="color: white">Trusted by Industries</h2>
+        </div>
+
+        <div
+          class="slider"
+          style="--width: 400px; --height: 350px; --quantity: 9"
+        >
+          <div class="list">
+            <div class="item" style="--position: 1">
+              <div class="review-card">
+                <div>
+                  <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                    "K.L. Bhrara handled our complex machinery import with zero demurrage. Their knowledge of Indian Customs is unmatched."
+                  </p>
+                </div>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop"
+                    class="client-avatar"
+                    alt="Client"
+                  />
+                  <div>
+                    <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                      Rajesh Gupta
+                    </h5>
+                    <span style="font-size: 0.85rem; opacity: 0.7;">Director, AutoParts India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item" style="--position: 2">
+              <div class="review-card">
+                <div>
+                  <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                    "Relocating my Golden Retriever to London was stressful until I found this team. They handled every permit perfectly."
+                  </p>
+                </div>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+                    class="client-avatar"
+                    alt="Client"
+                  />
+                  <div>
+                    <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                      Sarah Jenkins
+                    </h5>
+                    <span style="font-size: 0.85rem; opacity: 0.7;">Expat, UK High Commission</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item" style="--position: 3">
+              <div class="review-card">
+                <div>
+                  <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                    "We rely on them for our monthly textile exports. Reliable, transparent, and always available on the phone."
+                  </p>
+                </div>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop"
+                    class="client-avatar"
+                    alt="Client"
+                  />
+                  <div>
+                    <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                      Vikram Malhotra
+                    </h5>
+                    <span style="font-size: 0.85rem; opacity: 0.7;">CEO, TexFab Exports</span>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <div class="review-card reveal hover-link">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"K.L. Bhrara handled our complex machinery import with zero demurrage. Their knowledge of Indian Customs is unmatched."</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" class="client-avatar" alt="Client">
-                        <div>
-                            <h5 style="font-family: 'Manrope'; margin:0; font-size: 1rem;">Rajesh Gupta</h5>
-                            <span style="font-size: 0.85rem; opacity: 0.7;">Director, AutoParts India</span>
-                        </div>
+            <div class="item" style="--position: 4">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
                     </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "K.L. Bhrara handled our complex machinery import with zero demurrage. Their knowledge of Indian Customs is unmatched."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Rajesh Gupta
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">Director, AutoParts India</span>
+                    </div>
+                  </div>
                 </div>
+              </div>
+  
+              <div class="item" style="--position: 5">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "Relocating my Golden Retriever to London was stressful until I found this team. They handled every permit perfectly."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Sarah Jenkins
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">Expat, UK High Commission</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="item" style="--position: 6">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "We rely on them for our monthly textile exports. Reliable, transparent, and always available on the phone."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Vikram Malhotra
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">CEO, TexFab Exports</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <div class="review-card reveal hover-link" style="transition-delay: 0.2s;">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"Relocating my Golden Retriever to London was stressful until I found this team. They handled every permit perfectly."</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" class="client-avatar" alt="Client">
-                        <div>
-                            <h5 style="font-family: 'Manrope'; margin:0; font-size: 1rem;">Sarah Jenkins</h5>
-                            <span style="font-size: 0.85rem; opacity: 0.7;">Expat, UK High Commission</span>
-                        </div>
+               <div class="item" style="--position: 7">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
                     </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "K.L. Bhrara handled our complex machinery import with zero demurrage. Their knowledge of Indian Customs is unmatched."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Rajesh Gupta
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">Director, AutoParts India</span>
+                    </div>
+                  </div>
                 </div>
+              </div>
+  
+              <div class="item" style="--position: 8">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "Relocating my Golden Retriever to London was stressful until I found this team. They handled every permit perfectly."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Sarah Jenkins
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">Expat, UK High Commission</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="item" style="--position: 9">
+                <div class="review-card">
+                  <div>
+                    <div class="stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">
+                      "We rely on them for our monthly textile exports. Reliable, transparent, and always available on the phone."
+                    </p>
+                  </div>
+                  <div class="client-info">
+                    <img
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop"
+                      class="client-avatar"
+                      alt="Client"
+                    />
+                    <div>
+                      <h5 style="font-family: 'Manrope'; margin: 0; font-size: 1rem;">
+                        Vikram Malhotra
+                      </h5>
+                      <span style="font-size: 0.85rem; opacity: 0.7;">CEO, TexFab Exports</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <div class="review-card reveal hover-link" style="transition-delay: 0.4s;">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"We rely on them for our monthly textile exports. Reliable, transparent, and always available on the phone."</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop" class="client-avatar" alt="Client">
-                        <div>
-                            <h5 style="font-family: 'Manrope'; margin:0; font-size: 1rem;">Vikram Malhotra</h5>
-                            <span style="font-size: 0.85rem; opacity: 0.7;">CEO, TexFab Exports</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="faq" class="section faq-section">
-        <div class="container" style="max-width: 800px;">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-            </div>
-
-            <div class="accordion-item hover-link">
-                <button class="accordion-header">
-                    What documents are required for import clearance?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="accordion-content">
-                    <p>Standard documents include the Commercial Invoice, Packing List, Bill of Lading (or Airway Bill), Certificate of Origin, and Insurance Copy. Depending on the HS Code, specific licenses may be required.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item hover-link">
-                <button class="accordion-header">
-                    How do you calculate chargeable weight?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="accordion-content">
-                    <p>Chargeable weight is the higher of the Actual Weight or Volumetric Weight. For Air Freight, Volume is calculated as (L x W x H in cm) / 6000.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item hover-link">
-                <button class="accordion-header">
-                    Do you handle Dangerous Goods (DG) Cargo?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="accordion-content">
-                    <p>Yes, our staff is DGR certified. We handle batteries, chemicals, and other hazardous materials in strict compliance with IATA and IMDG regulations.</p>
-                </div>
-            </div>
+      <div class="container" style="max-width: 800px">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
         </div>
+
+        <div class="accordion-item hover-link">
+          <button class="accordion-header">
+            What documents are required for import clearance?
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Standard documents include the Commercial Invoice, Packing List,
+              Bill of Lading (or Airway Bill), Certificate of Origin, and
+              Insurance Copy. Depending on the HS Code, specific licenses may be
+              required.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item hover-link">
+          <button class="accordion-header">
+            How do you calculate chargeable weight?
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Chargeable weight is the higher of the Actual Weight or Volumetric
+              Weight. For Air Freight, Volume is calculated as (L x W x H in cm)
+              / 6000.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item hover-link">
+          <button class="accordion-header">
+            Do you handle Dangerous Goods (DG) Cargo?
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Yes, our staff is DGR certified. We handle batteries, chemicals,
+              and other hazardous materials in strict compliance with IATA and
+              IMDG regulations.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="#" class="footer-logo">K.L. Bhrara & Co.</a>
-                    <p>Delivering excellence since 1968. Your trusted partner for international logistics and customs clearance in India.</p>
-                </div>
-                <div class="footer">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">IATA Regulations</a></li>
-                    </ul>
-                </div>
-                <div class="footer">
-                    <h4>Newsletter</h4>
-                    <p style="margin-bottom: 15px;">Subscribe for industry updates.</p>
-                    <div style="display: flex; background: #222; padding: 5px; border-radius: 5px;">
-                        <input type="text" placeholder="Email" style="background: none; border: none; padding: 8px; color: white; outline: none; flex: 1; font-family: 'Manrope';">
-                        <button style="background: var(--brand-cyan); border: none; padding: 8px 15px; color: white; border-radius: 4px; cursor: pointer;">Go</button>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="#" class="footer-logo">K.L. Bhrara & Co.</a>
+            <p>
+              Delivering excellence since 1968. Your trusted partner for
+              international logistics and customs clearance in India.
+            </p>
+          </div>
+          <div class="footer">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">IATA Regulations</a></li>
+            </ul>
+          </div>
+          <div class="footer">
+            <h4>Newsletter</h4>
+            <p style="margin-bottom: 15px">Subscribe for industry updates.</p>
+            <div
+              style="
+                display: flex;
+                background: #222;
+                padding: 5px;
+                border-radius: 5px;
+              "
+            >
+              <input
+                type="text"
+                placeholder="Email"
+                style="
+                  background: none;
+                  border: none;
+                  padding: 8px;
+                  color: white;
+                  outline: none;
+                  flex: 1;
+                  font-family: 'Manrope';
+                "
+              />
+              <button
+                style="
+                  background: var(--brand-cyan);
+                  border: none;
+                  padding: 8px 15px;
+                  color: white;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              >
+                Go
+              </button>
             </div>
-            <div style="border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.9rem;">
-                &copy; 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
-            </div>
+          </div>
         </div>
+        <div
+          style="
+            border-top: 1px solid #222;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+          "
+        >
+          &copy; 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
+        </div>
+      </div>
     </footer>
 
     <script>
-        // 1. Tracking Simulation
-        function simulateTracking() {
-            const btn = document.getElementById('trackBtn');
-            const result = document.getElementById('trackResult');
-            const input = document.getElementById('trackingInput');
+      // 1. Tracking Simulation
+      function simulateTracking() {
+        const btn = document.getElementById("trackBtn");
+        const result = document.getElementById("trackResult");
+        const input = document.getElementById("trackingInput");
 
-            if(input.value.trim() === "") {
-                input.style.border = "1px solid red";
-                return;
-            }
-            input.style.border = "none";
-
-            // Loading State
-            const originalText = btn.innerText;
-            btn.innerText = "Locating...";
-            btn.style.opacity = "0.7";
-            result.style.display = 'none';
-
-            // Simulate API Call delay
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.opacity = "1";
-                result.style.display = 'block';
-                // Reset after 5 seconds
-                setTimeout(() => { result.style.display = 'none'; }, 8000);
-            }, 1500);
+        if (input.value.trim() === "") {
+          input.style.border = "1px solid red";
+          return;
         }
+        input.style.border = "none";
 
-        // 2. Mobile Menu Toggle
-        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileToggle = document.querySelector('.mobile-toggle');
+        // Loading State
+        const originalText = btn.innerText;
+        btn.innerText = "Locating...";
+        btn.style.opacity = "0.7";
+        result.style.display = "none";
 
-        mobileToggle.addEventListener('click', toggleMenu);
+        // Simulate API Call delay
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.opacity = "1";
+          result.style.display = "block";
+          // Reset after 5 seconds
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 8000);
+        }, 1500);
+      }
 
-        function toggleMenu() {
-            mobileOverlay.classList.toggle('active');
+      // 2. Mobile Menu Toggle
+      const mobileOverlay = document.querySelector(".mobile-menu-overlay");
+      const mobileToggle = document.querySelector(".mobile-toggle");
+
+      mobileToggle.addEventListener("click", toggleMenu);
+
+      function toggleMenu() {
+        mobileOverlay.classList.toggle("active");
+      }
+
+      // 3. Sticky Nav
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        if (window.scrollY > 50) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      });
+
+      // 4. Counter Animation
+      const counters = document.querySelectorAll(".counter");
+      const speed = 200;
+
+      const animateCounters = () => {
+        counters.forEach((counter) => {
+          const updateCount = () => {
+            const target = +counter.getAttribute("data-target");
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+              counter.innerText = Math.ceil(count + inc);
+              setTimeout(updateCount, 20);
+            } else {
+              counter.innerText = target + (target > 100 ? "+" : "");
+            }
+          };
+          updateCount();
+        });
+      };
+
+      // Trigger counter when in view
+      let statsSection = document.querySelector(".stats-section");
+      let started = false;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY >= statsSection.offsetTop - 600 && !started) {
+          animateCounters();
+          started = true;
         }
+      });
 
-        // 3. Sticky Nav
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
+      // 5. Reveal on Scroll
+      const reveals = document.querySelectorAll(".reveal");
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        reveals.forEach((reveal) => {
+          const elementTop = reveal.getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add("active");
+          }
         });
+      };
+      window.addEventListener("scroll", revealOnScroll);
+      // Trigger once on load
+      revealOnScroll();
 
-        // 4. Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+      // 6. FAQ Accordion
+      const accordions = document.querySelectorAll(".accordion-header");
+      accordions.forEach((acc) => {
+        acc.addEventListener("click", function () {
+          this.parentElement.classList.toggle("active");
+          const panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      });
 
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
+      // 7. Mobile Dropdown Toggle Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const dropdownTrigger = document.querySelector(".dropdown-trigger");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
 
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target + (target > 100 ? '+' : '');
-                    }
-                };
-                updateCount();
-            });
-        };
+        if (dropdownTrigger && window.innerWidth <= 968) {
+          dropdownTrigger.addEventListener("click", (e) => {
+            e.preventDefault(); // Stop jump to top
+            dropdownMenu.classList.toggle("active");
 
-        // Trigger counter when in view
-        let statsSection = document.querySelector('.stats-section');
-        let started = false;
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY >= statsSection.offsetTop - 600 && !started) {
-                animateCounters();
-                started = true;
+            // Rotate chevron
+            const icon = dropdownTrigger.querySelector("i");
+            if (dropdownMenu.classList.contains("active")) {
+              icon.style.transform = "rotate(180deg)";
+            } else {
+              icon.style.transform = "rotate(0deg)";
             }
-        });
+            icon.style.transition = "transform 0.3s";
+          });
+        }
+      });
 
-        // 5. Reveal on Scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 100;
-            reveals.forEach((reveal) => {
-                const elementTop = reveal.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        // Trigger once on load
-        revealOnScroll();
+      // ==========================================
+      // 3D GLOBE CONFIGURATION
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        const globeContainer = document.getElementById("globeViz");
 
-        // 6. FAQ Accordion
-        const accordions = document.querySelectorAll('.accordion-header');
-        accordions.forEach(acc => {
-            acc.addEventListener('click', function() {
-                this.parentElement.classList.toggle('active');
-                const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        });
+        // 1. Define Hubs (Lat, Lng)
+        // Origin: New Delhi, India
+        const ORIGIN = { lat: 28.6139, lng: 77.209, name: "New Delhi (HQ)" };
 
-        // 7. Mobile Dropdown Toggle Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const dropdownTrigger = document.querySelector('.dropdown-trigger');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            
-            if(dropdownTrigger && window.innerWidth <= 968) {
-                dropdownTrigger.addEventListener('click', (e) => {
-                    e.preventDefault(); // Stop jump to top
-                    dropdownMenu.classList.toggle('active');
-                    
-                    // Rotate chevron
-                    const icon = dropdownTrigger.querySelector('i');
-                    if(dropdownMenu.classList.contains('active')) {
-                        icon.style.transform = 'rotate(180deg)';
-                    } else {
-                        icon.style.transform = 'rotate(0deg)';
-                    }
-                    icon.style.transition = 'transform 0.3s';
-                });
-            }
+        // Destinations
+        const DESTINATIONS = [
+          { lat: 51.5074, lng: -0.1278, name: "London" }, // UK
+          { lat: 40.7128, lng: -74.006, name: "New York" }, // USA
+          { lat: 25.2048, lng: 55.2708, name: "Dubai" }, // UAE
+          { lat: 1.3521, lng: 103.8198, name: "Singapore" }, // Asia
+          { lat: -33.8688, lng: 151.2093, name: "Sydney" }, // Aus
+          { lat: 35.6762, lng: 139.6503, name: "Tokyo" }, // Japan
+          { lat: 48.8566, lng: 2.3522, name: "Paris" }, // Europe
+          { lat: -26.2041, lng: 28.0473, name: "Johannesburg" }, // Africa
+        ];
+
+        // 2. Generate Arcs (Routes)
+        const arcsData = DESTINATIONS.map((dest) => ({
+          startLat: ORIGIN.lat,
+          startLng: ORIGIN.lng,
+          endLat: dest.lat,
+          endLng: dest.lng,
+          color: ["#009FE3", "#C5A059"], // Brand Cyan to Gold gradient
+        }));
+
+        // 3. Initialize Globe
+        const world = Globe()(globeContainer)
+          .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg") // Night texture
+          .backgroundColor("rgba(0,0,0,0)") // Transparent background
+          .width(globeContainer.offsetWidth)
+          .height(globeContainer.offsetHeight)
+
+          // Route Visuals
+          .arcsData(arcsData)
+          .arcColor("color")
+          .arcDashLength(0.4)
+          .arcDashGap(2)
+          .arcDashInitialGap(() => Math.random())
+          .arcDashAnimateTime(2000) // Speed of the route animation
+          .arcStroke(0.5)
+
+          // Atmosphere Glow
+          .atmosphereColor("#009FE3")
+          .atmosphereAltitude(0.15)
+
+          // Initial View (Center on India)
+          .pointOfView({ lat: 22.0, lng: 77.0, altitude: 1.8 });
+
+        // 4. Auto-Rotate logic
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 0.5;
+
+        // 5. Handle Window Resize
+        window.addEventListener("resize", () => {
+          world.width(globeContainer.offsetWidth);
+          world.height(globeContainer.offsetHeight);
         });
-    </script> 
-</body>
+      });
+    </script>
+  </body>
 </html>
