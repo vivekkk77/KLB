@@ -39,11 +39,10 @@
 
         /* UI ELEMENTS */
         --shadow-card: 0 15px 35px rgba(31, 32, 96, 0.08);
-        --shadow-glow: 0 0 20px rgba(0, 159, 227, 0.3);
         --radius-lg: 24px;
-        --radius-md: 16px;
         --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --ease-material: cubic-bezier(0.85, 0, 0.15, 1);
       }
 
       * {
@@ -63,10 +62,7 @@
         line-height: 1.6;
       }
 
-      h1,
-      h2,
-      h3,
-      h4 {
+      h1, h2, h3, h4 {
         font-family: "Playfair Display", serif;
         color: var(--brand-navy);
         line-height: 1.2;
@@ -80,12 +76,8 @@
       }
 
       /* Utilities */
-      .text-cyan {
-        color: var(--brand-cyan);
-      }
-      .text-gold {
-        color: var(--brand-accent);
-      }
+      .text-cyan { color: var(--brand-cyan); }
+      .text-gold { color: var(--brand-accent); }
       .section-header {
         text-align: center;
         margin-bottom: 70px;
@@ -97,9 +89,7 @@
         font-size: 2.8rem;
         margin-bottom: 16px;
       }
-      .section {
-        padding: 120px 0;
-      }
+      .section { padding: 120px 0; }
 
       /* Animation Utility */
       .reveal {
@@ -119,18 +109,18 @@
         position: fixed;
         top: 0;
         width: 100%;
-        padding: 20px 0;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        padding: 15px 0;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         z-index: 1000;
         transition: all 0.4s var(--ease-smooth);
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       }
       nav.scrolled {
-        padding: 12px 0;
+        padding: 10px 0;
         background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       }
 
       .nav-wrapper {
@@ -143,16 +133,16 @@
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
       }
       .brand-logo {
-        height: 50px;
+        height: 45px;
         width: auto;
         object-fit: contain;
       }
       .logo-text {
         font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
         color: var(--brand-navy);
         line-height: 1;
@@ -161,9 +151,10 @@
         justify-content: center;
       }
 
+      /* Desktop Menu */
       .menu {
         display: flex;
-        gap: 40px;
+        gap: 35px;
         list-style: none;
         align-items: center;
       }
@@ -183,66 +174,53 @@
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: -5px;
+        bottom: -4px;
         left: 0;
         background: var(--brand-cyan);
         transition: width 0.3s ease;
       }
-      .menu a:not(.btn-quote)::after {
-        width: 0;
-      } /* Reset default width */
       .menu a:not(.btn-quote):hover::after {
         width: 100%;
       }
 
       .btn-quote {
-        padding: 14px 32px;
+        padding: 12px 28px;
         background: linear-gradient(135deg, var(--brand-navy), #2a2c85);
         color: white !important;
         border-radius: 50px;
         font-weight: 600;
-        box-shadow: 0 8px 20px rgba(31, 32, 96, 0.25);
-        transition: transform 0.3s var(--ease-elastic);
+        box-shadow: 0 8px 20px rgba(31, 32, 96, 0.2);
+        transition: all 0.3s var(--ease-elastic);
         border: 1px solid transparent;
       }
       .btn-quote:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(31, 32, 96, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(31, 32, 96, 0.3);
       }
 
-      .mobile-toggle {
-        display: none;
-        font-size: 1.5rem;
-        color: var(--brand-navy);
-        cursor: pointer;
-      }
-
-      /* DROPDOWN CONTAINER */
+      /* Dropdown Logic */
       .nav-item-dropdown {
         position: relative;
         padding: 10px 0;
+        cursor: pointer;
       }
-
-      /* THE DROPDOWN BOX */
       .dropdown-menu {
         position: absolute;
         top: 100%;
         left: 50%;
-        transform: translateX(-50%) translateY(10px);
+        transform: translateX(-50%) translateY(15px);
         background: white;
-        min-width: 280px;
-        padding: 12px 0;
+        min-width: 260px;
+        padding: 8px 0;
         border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(31, 32, 96, 0.15);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: 1100;
-        border: 1px solid rgba(0, 0, 0, 0.05);
         list-style: none;
+        border: 1px solid rgba(0,0,0,0.04);
       }
-
-      /* POINTER ARROW */
       .dropdown-menu::before {
         content: "";
         position: absolute;
@@ -252,64 +230,40 @@
         width: 12px;
         height: 12px;
         background: white;
-        border-left: 1px solid rgba(0, 0, 0, 0.05);
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-left: 1px solid rgba(0,0,0,0.04);
+        border-top: 1px solid rgba(0,0,0,0.04);
       }
-
-      /* SHOW ON HOVER */
       .nav-item-dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateX(-50%) translateY(0);
       }
-
-      /* DROPDOWN LINKS */
-      .dropdown-menu li {
-        display: block;
-        margin: 0;
-      }
-
       .dropdown-menu a {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 24px;
+        padding: 12px 20px;
         color: var(--text-main);
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.2s ease;
+        font-size: 0.9rem;
         border-left: 3px solid transparent;
       }
-
-      /* Remove underline effect from main menu for dropdown items */
-      .dropdown-menu a::after {
-        display: none;
-      }
-
       .dropdown-menu a i:first-child {
-        width: 24px;
+        width: 25px;
         color: var(--text-muted);
-        transition: color 0.2s;
       }
-
+      .dropdown-menu a:hover {
+        background: #f4faff;
+        color: var(--brand-cyan);
+        border-left-color: var(--brand-cyan);
+      }
+      .dropdown-menu a:hover i:first-child {
+        color: var(--brand-cyan);
+      }
+      .dropdown-menu a::after { display: none; }
       .arrow-hover {
         opacity: 0;
         transform: translateX(-5px);
-        transition: all 0.2s;
-        font-size: 0.8em;
-        color: var(--brand-cyan);
-      }
-
-      /* LINK HOVER STATE */
-      .dropdown-menu a:hover {
-        background: #f0f9ff;
-        color: var(--brand-cyan);
-        border-left-color: var(--brand-cyan);
-        padding-left: 28px;
-      }
-
-      .dropdown-menu a:hover i:first-child {
+        transition: 0.3s;
         color: var(--brand-cyan);
       }
       .dropdown-menu a:hover .arrow-hover {
@@ -317,36 +271,150 @@
         transform: translateX(0);
       }
 
-      /* Mobile Nav */
+      /* =========================================
+           UPDATED PREMIUM MOBILE TOGGLE
+           ========================================= */
+      .mobile-toggle {
+        display: none; /* Flex on mobile */
+        cursor: pointer;
+        z-index: 2000;
+        
+        /* Size & Shape */
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        
+        /* Premium Look */
+        background: var(--brand-navy);
+        background: linear-gradient(135deg, var(--brand-navy) 0%, #16174a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 5px 20px rgba(31, 32, 96, 0.25);
+        
+        /* Flex Alignment */
+        align-items: center;
+        justify-content: center;
+        
+        /* Smooth Animation */
+        transition: all 0.4s var(--ease-elastic);
+      }
+      
+      .mobile-toggle i {
+        font-size: 1.4rem;
+        color: white; /* Clean white icon */
+        transition: transform 0.3s ease;
+      }
+      
+      /* Hover State */
+      .mobile-toggle:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 159, 227, 0.4); /* Cyan Glow */
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      /* Active Click State */
+      .mobile-toggle:active {
+        transform: scale(0.95);
+        background: var(--brand-cyan);
+      }
+
+      /* =========================================
+           MOBILE MENU OVERLAY
+           ========================================= */
       .mobile-menu-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(31, 32, 96, 0.98);
-        z-index: 999;
+        inset: 0;
+        background: rgba(15, 16, 53, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 1500;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.4s ease;
-        backdrop-filter: blur(10px);
+        padding: 40px;
+        transform: translateX(100%);
+        transition: transform 0.6s var(--ease-material);
       }
+
       .mobile-menu-overlay.active {
-        opacity: 1;
-        pointer-events: all;
+        transform: translateX(0);
       }
+
+      .mobile-links {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
       .mobile-links a {
-        display: block;
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
         color: white;
-        font-size: 2rem;
-        margin: 20px 0;
         text-decoration: none;
-        font-family: "Playfair Display";
+        font-weight: 600;
+        transition: color 0.3s;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s;
       }
+
+      .mobile-menu-overlay.active .mobile-links a:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(5) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+
+      .mobile-links a:hover {
+        color: var(--brand-cyan);
+        padding-left: 10px;
+      }
+
+      .mobile-links span {
+        display: block;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.5);
+        margin-top: -5px;
+        font-weight: 400;
+      }
+
+      .mobile-btn-quote {
+        margin-top: 30px;
+        background: var(--brand-cyan);
+        color: white !important;
+        text-align: center;
+        font-size: 1.2rem !important;
+        font-family: "Manrope", sans-serif !important;
+        padding: 15px !important;
+        border-radius: 12px;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .mobile-menu-overlay.active .mobile-btn-quote {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.6s;
+      }
+
+      .close-menu {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        opacity: 0;
+        transform: rotate(-90deg);
+        transition: all 0.5s ease 0.5s;
+      }
+      .mobile-menu-overlay.active .close-menu {
+        opacity: 1;
+        transform: rotate(0);
+      }
+
 
       /* =========================================
            3. HERO SECTION
@@ -364,34 +432,20 @@
         );
         overflow: hidden;
       }
-      /* Modified Hero Background to hold the 3D Globe */
-.hero-bg {
-    position: absolute;
-    right: 5%; /* Pull away from the extreme right edge */
-    top: 50%;  /* Move down to vertically center (accounting for navbar) */
-    transform: translateY(-50%); /* Perfect vertical centering */
-    width: 600px; /* Fixed width to keep it contained */
-    height: 600px; /* Fixed height for a perfect square */
-    background: transparent;
-    z-index: 1;
-    overflow: visible; /* Allow glow to show */
-    pointer-events: all;
-    cursor: grab;
-}
-
-      .hero-bg:active {
-        cursor: grabbing;
+      .hero-bg {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 600px;
+        height: 600px;
+        background: transparent;
+        z-index: 1;
+        overflow: visible;
+        pointer-events: all;
+        cursor: grab;
       }
-
-      @keyframes floatImage {
-        0%,
-        100% {
-          transform: translateY(-50%);
-        }
-        50% {
-          transform: translateY(-48%);
-        }
-      }
+      .hero-bg:active { cursor: grabbing; }
 
       .hero-content {
         max-width: 600px;
@@ -431,7 +485,6 @@
         max-width: 90%;
       }
 
-      /* Tracking Component */
       .tracker-container {
         background: white;
         padding: 12px;
@@ -480,14 +533,8 @@
         animation: slideDown 0.3s ease;
       }
       @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       /* =========================================
@@ -532,21 +579,13 @@
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        mask-image: linear-gradient(
-          to right,
-          transparent,
-          black 10%,
-          black 90%,
-          transparent
-        );
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       }
       .marquee-content {
         display: flex;
         animation: scroll 40s linear infinite;
       }
-      .marquee-content:hover {
-        animation-play-state: paused;
-      }
+      .marquee-content:hover { animation-play-state: paused; }
       .partner-logo {
         margin: 0 50px;
         font-family: "Playfair Display", serif;
@@ -568,20 +607,14 @@
         transform: scale(1.05);
       }
       @keyframes scroll {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
       }
 
       /* =========================================
            5. PROCESS TIMELINE
            ========================================= */
-      .process-section {
-        background: white;
-      }
+      .process-section { background: white; }
       .process-steps {
         display: flex;
         justify-content: space-between;
@@ -595,13 +628,7 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          #e0e0e0 20%,
-          #e0e0e0 80%,
-          transparent
-        );
+        background: linear-gradient(to right, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent);
         z-index: 1;
       }
       .step-card {
@@ -643,14 +670,13 @@
       }
 
       /* =========================================
-           6. PREMIUM ENTERPRISE SERVICES
+           6. SERVICES
            ========================================= */
       .services-grid {
         gap: 30px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       }
-
       .service-card {
         position: relative;
         height: 500px;
@@ -666,7 +692,6 @@
         background: #0a1018;
         cursor: pointer;
       }
-
       .service-bg-img {
         position: absolute;
         inset: 0;
@@ -677,27 +702,17 @@
         z-index: -2;
         opacity: 0.9;
       }
-
       .service-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(10, 25, 47, 0.1) 0%,
-          rgba(10, 25, 47, 0.8) 50%,
-          rgba(10, 25, 47, 0.95) 100%
-        );
+        background: linear-gradient(to bottom, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.8) 50%, rgba(10, 25, 47, 0.95) 100%);
         z-index: -1;
       }
-
       .service-card:hover {
         transform: translateY(-12px);
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
       }
-      .service-card:hover .service-bg-img {
-        transform: scale(1.15);
-      }
-
+      .service-card:hover .service-bg-img { transform: scale(1.15); }
       .service-content-wrapper {
         position: relative;
         z-index: 2;
@@ -706,7 +721,6 @@
         transform: translateY(0);
         transition: transform 0.4s var(--ease-smooth);
       }
-
       .service-icon {
         width: 70px;
         height: 70px;
@@ -730,7 +744,6 @@
         box-shadow: 0 0 30px rgba(0, 159, 227, 0.5);
         border-color: rgba(255, 255, 255, 0.5);
       }
-
       .service-card h3 {
         color: white;
         font-size: 1.6rem;
@@ -738,15 +751,12 @@
         font-family: "Playfair Display", serif;
         transition: transform 0.4s ease;
       }
-      .service-card:hover h3 {
-        transform: translateX(8px);
-      }
+      .service-card:hover h3 { transform: translateX(8px); }
       .service-card p {
         color: rgba(255, 255, 255, 0.8);
         font-size: 1rem;
         line-height: 1.6;
       }
-
       .service-link {
         margin-top: 24px;
         display: inline-flex;
@@ -792,15 +802,8 @@
         opacity: 0.1;
         animation: spin 30s linear infinite;
       }
-      @keyframes spin {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .pet-image-wrapper {
-        position: relative;
-      }
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+      .pet-image-wrapper { position: relative; }
       .pet-image-wrapper img {
         border-radius: 30px;
         width: 100%;
@@ -821,21 +824,15 @@
         animation: bounce 3s infinite ease-in-out;
       }
       @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
       }
 
       /* =========================================
-           8. TESTIMONIALS & SLIDER
+           8. REVIEWS & SLIDER
            ========================================= */
       .reviews-section {
-        background: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")
-          fixed center/cover;
+        background: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop") fixed center/cover;
         position: relative;
       }
       .reviews-overlay {
@@ -878,24 +875,12 @@
         background: #ddd;
         object-fit: cover;
       }
-
-      /* --- NEW SLIDER CSS --- */
       .slider {
         width: 100%;
         height: var(--height);
         overflow: hidden;
-        mask-image: linear-gradient(
-          to right,
-          transparent,
-          #000 10% 90%,
-          transparent
-        );
-        -webkit-mask-image: linear-gradient(
-          to right,
-          transparent,
-          #000 10% 90%,
-          transparent
-        );
+        mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
         position: relative;
         z-index: 2;
       }
@@ -910,31 +895,21 @@
         height: var(--height);
         position: absolute;
         left: 100%;
-        animation: autoRun 30s linear infinite; /* Increased time for reading text */
+        animation: autoRun 30s linear infinite;
         transition: filter 0.5s;
-        animation-delay: calc(
-          (30s / var(--quantity)) * (var(--position) - 1) - 30s
-        ) !important;
-        padding: 0 15px; /* Spacing between cards */
+        animation-delay: calc((30s / var(--quantity)) * (var(--position) - 1) - 30s) !important;
+        padding: 0 15px;
       }
       @keyframes autoRun {
-        from {
-          left: 100%;
-        }
-        to {
-          left: calc(var(--width) * -1);
-        }
+        from { left: 100%; }
+        to { left: calc(var(--width) * -1); }
       }
-      .slider:hover .item {
-        animation-play-state: paused !important;
-      }
+      .slider:hover .item { animation-play-state: paused !important; }
 
       /* =========================================
            9. FAQ
            ========================================= */
-      .faq-section {
-        background: white;
-      }
+      .faq-section { background: white; }
       .accordion-item {
         border-bottom: 1px solid #eee;
         margin-bottom: 15px;
@@ -955,9 +930,7 @@
         align-items: center;
         cursor: pointer;
       }
-      .accordion-header:hover {
-        color: var(--brand-cyan);
-      }
+      .accordion-header:hover { color: var(--brand-cyan); }
       .accordion-content {
         max-height: 0;
         overflow: hidden;
@@ -966,9 +939,7 @@
         color: var(--text-muted);
         font-size: 1rem;
       }
-      .accordion-item.active .accordion-content {
-        padding-bottom: 24px;
-      }
+      .accordion-item.active .accordion-content { padding-bottom: 24px; }
       .accordion-item.active i {
         transform: rotate(180deg);
         transition: 0.3s;
@@ -1018,69 +989,34 @@
         padding-left: 5px;
       }
 
-      /* Mobile Nav Overrides */
+      /* =========================================
+           RESPONSIVE TWEAKS
+           ========================================= */
       @media (max-width: 968px) {
-        .nav-item-dropdown {
-          width: 100%;
-          text-align: center;
-        }
-        .dropdown-menu {
-          position: static;
-          transform: none;
-          opacity: 1;
-          visibility: visible;
-          box-shadow: none;
-          border: none;
-          background: #f8f9fc;
-          width: 100%;
-          display: none;
-          padding: 0;
-          margin-top: 10px;
-        }
-        .dropdown-menu::before {
-          display: none;
-        }
-        .dropdown-menu.active {
-          display: block;
-          animation: slideDown 0.3s ease;
-        }
-        .dropdown-menu a {
-          padding: 15px 20px;
-          justify-content: flex-start;
-          gap: 15px;
-        }
-        .arrow-hover {
-          display: none;
-        }
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
+        .menu { display: none; }
+        .mobile-toggle { display: flex; } /* Ensure it's displayed as flex */
+        
         .hero {
           flex-direction: column;
-          padding-top: 120px;
+          padding-top: 100px;
         }
-.hero-bg {
-        position: relative;
-        width: 100%;
-        height: 350px; /* Smaller on mobile */
-        right: auto;
-        top: auto;
-        transform: none;
-        margin-top: 20px;
-    }
+        .hero .container { pointer-events: auto; }
+        
+        .hero-bg {
+          position: relative;
+          width: 100%;
+          height: 350px;
+          right: auto;
+          top: auto;
+          transform: none;
+          margin-top: 20px;
+          z-index: 1;
+        }
         .hero-content {
           margin-left: 0;
           text-align: center;
         }
-
+        
         .stats-grid {
           grid-template-columns: 1fr 1fr;
           gap: 40px;
@@ -1094,13 +1030,7 @@
           height: 100%;
           left: 30px;
           top: 0;
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            #e0e0e0 20%,
-            #e0e0e0 80%,
-            transparent
-          );
+          background: linear-gradient(to bottom, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent);
         }
         .step-card {
           width: 100%;
@@ -1117,33 +1047,12 @@
           padding: 40px;
           gap: 40px;
         }
-        .pet-image-wrapper {
-          order: -1;
-        }
-        .menu {
-          display: none;
-        }
-        .mobile-toggle {
-          display: block;
-        }
+        .pet-image-wrapper { order: -1; }
         .footer-grid {
           grid-template-columns: 1fr;
           text-align: center;
         }
-        .brand-logo {
-          height: 40px;
-        }
-        .logo-text {
-          font-size: 1.2rem;
-        }
       }
-.hero .container {
-    pointer-events: none;
-}
-
-.hero-content {
-    pointer-events: auto;
-}
     </style>
   </head>
   <body>
@@ -1218,28 +1127,35 @@
             </ul>
           </li>
 
+          <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
         </ul>
 
-        <div class="mobile-toggle">
-          <i class="fa-solid fa-bars"></i>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars-staggered"></i>
         </div>
       </div>
     </nav>
 
     <div class="mobile-menu-overlay">
-      <div class="mobile-links">
-        <a href="#about" onclick="toggleMenu()">Process</a>
-        <a href="services.html" onclick="toggleMenu()">Services</a>
-        <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
-        <a href="contact.html" onclick="toggleMenu()">Contact Us</a>
-      </div>
-      <div
-        style="margin-top: 30px; font-size: 2rem; color: white; cursor: pointer"
-        onclick="toggleMenu()"
-      >
+      <div class="close-menu" onclick="toggleMenu()">
         <i class="fa-solid fa-xmark"></i>
+      </div>
+      
+      <div class="mobile-links">
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <a href="services.html" onclick="toggleMenu()">
+          Services
+          <span>Customs, Air, Sea & more</span>
+        </a>
+        <a href="#about" onclick="toggleMenu()">Process</a>
+        <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
+        <a href="contact.html" onclick="toggleMenu()">Contact</a>
+        
+        <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
+          Get A Free Quote
+        </a>
       </div>
     </div>
 
@@ -1315,7 +1231,7 @@
           <div class="partner-logo">
             <i class="fa-solid fa-plane"></i> CATHAY PACIFIC
           </div>
-          <div class="partner-logo">
+           <div class="partner-logo">
             <i class="fa-solid fa-plane"></i> LUFTHANSA CARGO
           </div>
           <div class="partner-logo">
@@ -1826,7 +1742,6 @@
                 </div>
               </div>
             </div>
-
             <div class="item" style="--position: 2">
               <div class="review-card">
                 <div>
@@ -1856,7 +1771,6 @@
                 </div>
               </div>
             </div>
-
             <div class="item" style="--position: 3">
               <div class="review-card">
                 <div>
@@ -1886,8 +1800,7 @@
                 </div>
               </div>
             </div>
-            
-            <div class="item" style="--position: 4">
+             <div class="item" style="--position: 4">
                 <div class="review-card">
                   <div>
                     <div class="stars">
@@ -1916,7 +1829,6 @@
                   </div>
                 </div>
               </div>
-  
               <div class="item" style="--position: 5">
                 <div class="review-card">
                   <div>
@@ -1946,7 +1858,6 @@
                   </div>
                 </div>
               </div>
-  
               <div class="item" style="--position: 6">
                 <div class="review-card">
                   <div>
@@ -1976,7 +1887,6 @@
                   </div>
                 </div>
               </div>
-
                <div class="item" style="--position: 7">
                 <div class="review-card">
                   <div>
@@ -2006,7 +1916,6 @@
                   </div>
                 </div>
               </div>
-  
               <div class="item" style="--position: 8">
                 <div class="review-card">
                   <div>
@@ -2036,7 +1945,6 @@
                   </div>
                 </div>
               </div>
-  
               <div class="item" style="--position: 9">
                 <div class="review-card">
                   <div>
@@ -2232,14 +2140,18 @@
         }, 1500);
       }
 
-      // 2. Mobile Menu Toggle
+      // 2. Mobile Menu Toggle Logic
       const mobileOverlay = document.querySelector(".mobile-menu-overlay");
-      const mobileToggle = document.querySelector(".mobile-toggle");
-
-      mobileToggle.addEventListener("click", toggleMenu);
 
       function toggleMenu() {
         mobileOverlay.classList.toggle("active");
+        
+        // Lock Scroll when menu is open
+        if (mobileOverlay.classList.contains("active")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
       }
 
       // 3. Sticky Nav
@@ -2295,7 +2207,6 @@
         });
       };
       window.addEventListener("scroll", revealOnScroll);
-      // Trigger once on load
       revealOnScroll();
 
       // 6. FAQ Accordion
@@ -2312,25 +2223,13 @@
         });
       });
 
-      // 7. Mobile Dropdown Toggle Logic
+      // 7. Desktop Dropdown Logic (for clicks on touch devices mostly)
       document.addEventListener("DOMContentLoaded", () => {
         const dropdownTrigger = document.querySelector(".dropdown-trigger");
         const dropdownMenu = document.querySelector(".dropdown-menu");
 
         if (dropdownTrigger && window.innerWidth <= 968) {
-          dropdownTrigger.addEventListener("click", (e) => {
-            e.preventDefault(); // Stop jump to top
-            dropdownMenu.classList.toggle("active");
-
-            // Rotate chevron
-            const icon = dropdownTrigger.querySelector("i");
-            if (dropdownMenu.classList.contains("active")) {
-              icon.style.transform = "rotate(180deg)";
-            } else {
-              icon.style.transform = "rotate(0deg)";
-            }
-            icon.style.transition = "transform 0.3s";
-          });
+             // Logic handled by mobile overlay now, but keeping this safe
         }
       });
 
