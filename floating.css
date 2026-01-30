@@ -1,0 +1,165 @@
+/* =========================================
+   NEW SECTIONS STYLING
+   ========================================= */
+
+/* --- WHY CHOOSE KLB --- */
+.why-section {
+    background: var(--white);
+    text-align: center;
+    position: relative;
+    padding-top: 80px; /* Reduced padding to fit flow */
+}
+
+/* Gold Underline for Headings */
+.heading-underline::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--brand-accent);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.why-card {
+    padding: 30px 20px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.why-card:hover {
+    transform: translateY(-8px);
+}
+
+.why-icon-box {
+    width: 80px;
+    height: 80px;
+    background: #f8f9fc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2rem;
+    color: var(--brand-navy);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.why-card:hover .why-icon-box {
+    background: var(--brand-cyan);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 159, 227, 0.2);
+}
+
+/* Gold Accent Dot */
+.why-icon-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+}
+
+.why-icon-box::before {
+    content: '✓';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--brand-accent);
+    font-weight: 800;
+    z-index: 2;
+}
+
+.why-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--brand-navy);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+}
+
+.why-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* --- MEMBERSHIP SECTION --- */
+.members-section {
+    background-color: #101135; /* Dark Navy Background */
+    color: white;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.members-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.member-box {
+    background: white;
+    width: 150px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.member-box:hover {
+    transform: scale(1.05);
+}
+
+.member-placeholder {
+    font-weight: 800;
+    color: var(--brand-navy);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-family: 'Manrope', sans-serif;
+    line-height: 1;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 968px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .members-grid {
+        gap: 15px;
+    }
+    .member-box {
+        width: 45%; /* 2 per row on mobile */
+        height: 100px;
+    }
+}
