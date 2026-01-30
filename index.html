@@ -6,7 +6,6 @@
     <title>K.L. Bhrara & Co. Pvt Ltd | Premium Global Logistics</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="stylesheet" href="floating.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
@@ -453,6 +452,9 @@
         position: relative;
         z-index: 2;
         padding-bottom: 50px;
+        
+        /* FIX: Enable pointer events for content */
+        pointer-events: auto; 
       }
       .tagline {
         display: inline-block;
@@ -1160,7 +1162,7 @@
     </div>
 
     <section class="hero">
-      <div class="container" style="position: relative; z-index: 2; width: 100%">
+      <div class="container" style="position: relative; z-index: 2; width: 100%; pointer-events: none;">
         <div class="hero-content reveal active">
           <span class="tagline">Est. 1968 • New Delhi</span>
           <h1>Seamless Global Logistics Solutions</h1>
