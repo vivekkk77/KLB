@@ -453,6 +453,9 @@
         position: relative;
         z-index: 2;
         padding-bottom: 50px;
+        
+        /* FIX: Enable pointer events for content */
+        pointer-events: auto; 
       }
       .tagline {
         display: inline-block;
@@ -1160,7 +1163,7 @@
     </div>
 
     <section class="hero">
-      <div class="container" style="position: relative; z-index: 2; width: 100%">
+      <div class="container" style="position: relative; z-index: 2; width: 100%; pointer-events: none;">
         <div class="hero-content reveal active">
           <span class="tagline">Est. 1968 • New Delhi</span>
           <h1>Seamless Global Logistics Solutions</h1>
