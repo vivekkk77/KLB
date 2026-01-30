@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | K.L. Bhrara & Co. Pvt Ltd</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           1. CORE VARIABLES (INHERITED)
+           ========================================= */
+        :root {
+            --brand-navy: #1F2060;
+            --brand-cyan: #009FE3;
+            --brand-accent: #C5A059;
+            --white: #FFFFFF;
+            --off-white: #F8F9FC;
+            --text-main: #1A1A2E;
+            --text-muted: #58677C;
+            --shadow-card: 0 15px 35px rgba(31, 32, 96, 0.08);
+            --radius-lg: 16px;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--white); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; color: var(--brand-navy); line-height: 1.2; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; }
+        .text-cyan { color: var(--brand-cyan); }
+        .text-gold { color: var(--brand-accent); }
+        .section { padding: 100px 0; }
+        
+        /* Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           2. NAVIGATION
+           ========================================= */
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { text-decoration: none; display: flex; align-items: center; gap: 15px; }
+        .brand-logo { height: 55px; width: auto; object-fit: contain; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--brand-navy); line-height: 1; display: flex; flex-direction: column; justify-content: center; }
+        .menu { display: flex; gap: 40px; list-style: none; align-items: center; }
+        .menu a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        .menu a:hover { color: var(--brand-cyan); }
+        .btn-quote { padding: 12px 28px; background: linear-gradient(135deg, var(--brand-navy), #2a2c85); color: white !important; border-radius: 50px; font-weight: 600; box-shadow: 0 8px 20px rgba(31, 32, 96, 0.25); transition: transform 0.3s var(--ease); }
+        .btn-quote:hover { transform: translateY(-2px); }
+
+        /* Dropdown Styles */
+        .nav-item-dropdown { position: relative; padding: 10px 0; }
+        .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; min-width: 280px; padding: 12px 0; border-radius: 12px; box-shadow: 0 15px 35px rgba(31, 32, 96, 0.15); opacity: 0; visibility: hidden; transition: all 0.3s var(--ease); z-index: 1100; border: 1px solid rgba(0,0,0,0.05); list-style: none; }
+        .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a { display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; color: var(--text-main); font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; border-left: 3px solid transparent; }
+        .dropdown-menu a:hover { background: #F0F9FF; color: var(--brand-cyan); border-left-color: var(--brand-cyan); padding-left: 28px; }
+        .dropdown-menu a i:first-child { width: 24px; color: var(--text-muted); }
+        .dropdown-menu a:hover i:first-child { color: var(--brand-cyan); }
+        .arrow-hover { opacity: 0; transform: translateX(-5px); font-size: 0.8em; }
+        .dropdown-menu a:hover .arrow-hover { opacity: 1; transform: translateX(0); }
+
+        /* =========================================
+           3. ABOUT PAGE SPECIFIC STYLES
+           ========================================= */
+        
+        /* Hero */
+        .about-hero {
+            position: relative; padding-top: 180px; padding-bottom: 120px;
+            background: linear-gradient(to right, rgba(10, 25, 47, 0.92), rgba(10, 25, 47, 0.85)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 80vh; display: flex; align-items: center;
+        }
+        .hero-content { max-width: 800px; color: white; }
+        .hero-content h1 { color: white; font-size: 3.5rem; margin-bottom: 24px; line-height: 1.1; font-weight: 700; }
+        .hero-content p { color: rgba(255,255,255,0.85); font-size: 1.25rem; margin-bottom: 40px; line-height: 1.8; max-width: 700px; }
+        .hero-btn-group { display: flex; gap: 20px; }
+        .btn-outline-white { padding: 14px 32px; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .btn-outline-white:hover { background: white; color: var(--brand-navy); }
+
+        /* Legacy Section */
+        .legacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .legacy-text { padding-right: 20px; }
+        .legacy-badges { display: flex; gap: 20px; margin-top: 30px; }
+        .badge-box { background: var(--off-white); padding: 15px 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(0,0,0,0.05); }
+        .badge-box span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--brand-navy); font-family: 'Playfair Display'; }
+        .badge-box label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+        .founder-img-wrap { position: relative; }
+        .founder-img { width: 100%; border-radius: 20px; box-shadow: var(--shadow-card); }
+        .year-stamp { position: absolute; bottom: -20px; left: -20px; background: var(--brand-accent); color: white; padding: 20px 30px; border-radius: 12px; font-family: 'Playfair Display'; font-size: 1.5rem; font-weight: 700; box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
+
+        /* Differentiation Cards */
+        .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .diff-card { background: white; padding: 35px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .diff-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--brand-cyan); }
+        .diff-icon { font-size: 2rem; color: var(--brand-cyan); margin-bottom: 20px; }
+        .diff-card h4 { font-family: 'Manrope'; font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--brand-navy); }
+        .diff-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* Services Overview Grid */
+        .svc-overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .svc-block { background: var(--off-white); padding: 30px; border-radius: 12px; transition: 0.3s; border: 1px solid transparent; }
+        .svc-block:hover { background: white; box-shadow: var(--shadow-card); transform: translateY(-3px); }
+        .svc-block.highlight { background: #e0f7fa; border: 1px solid var(--brand-cyan); }
+        .svc-block i { font-size: 1.5rem; color: var(--brand-navy); margin-bottom: 15px; display: block; }
+        .svc-block.highlight i { color: #006064; }
+        .svc-block h4 { font-family: 'Manrope'; font-size: 1.1rem; margin-bottom: 8px; }
+        .svc-block p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+        /* Pet Feature Split */
+        .pet-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-card); margin-top: 40px; }
+        .pet-content { padding: 60px; }
+        .pet-image { height: 100%; min-height: 400px; background: url('https://images.unsplash.com/photo-1524511751214-b0a384dd9afe?q=80&w=2070&auto=format&fit=crop') center/cover; }
+        .cert-badge { display: inline-flex; align-items: center; gap: 8px; background: #006064; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 20px; }
+
+        /* Trust Grid */
+        .trust-icons { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center; }
+        .trust-box { padding: 20px; border: 1px solid #eee; border-radius: 12px; color: var(--text-muted); transition: 0.3s; }
+        .trust-box:hover { border-color: var(--brand-navy); color: var(--brand-navy); background: white; }
+        .trust-box i { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+        .trust-box span { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+
+        /* Credentials */
+        .cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .cred-item { display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 8px; border: 1px solid #eee; }
+        .cred-item i { color: var(--brand-cyan); font-size: 1.2rem; }
+        .cred-item span { font-weight: 700; color: var(--brand-navy); font-size: 0.95rem; }
+
+        /* Philosophy */
+        .philosophy-section { text-align: center; max-width: 800px; margin: 0 auto; }
+        .philosophy-section h2 { font-size: 2.5rem; margin-bottom: 30px; }
+        .promises-list { list-style: none; display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 30px; }
+        .promises-list li { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: var(--text-main); }
+        .promises-list li i { color: var(--brand-accent); }
+
+        /* CTA */
+        .cta-banner { background: var(--brand-navy); border-radius: 20px; padding: 60px; text-align: center; color: white; background-image: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent); }
+        .cta-banner h2 { color: white; margin-bottom: 20px; }
+        
+        /* Footer */
+        footer { background: #050505; color: #888; padding: 80px 0 30px; }
+        .footer-logo { font-size: 1.5rem; color: white; font-family: 'Playfair Display', serif; margin-bottom: 20px; display: block; text-decoration: none;}
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer h4 { color: white; margin-bottom: 24px; font-family: 'Manrope', sans-serif; }
+        .footer ul li { margin-bottom: 12px; list-style: none; }
+        .footer ul li a { color: #888; text-decoration: none; transition: 0.3s; }
+        .footer ul li a:hover { color: var(--brand-cyan); }
+
+        @media (max-width: 968px) {
+            .legacy-grid, .pet-split, .svc-overview-grid, .trust-icons { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .menu { display: none; }
+            .brand-logo { height: 40px; }
+            .pet-image { height: 250px; order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">
+                <img src="klb.png" alt="K.L. Bhrara Logo" class="brand-logo">
+                <div class="logo-text">
+                    K.L. Bhrara <span style="font-size: 0.8em; opacity: 0.8; font-family: 'Manrope'; display: block; line-height: 1;">& Co. Pvt. Ltd.</span>
+                </div>
+            </a>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="services.html">Services <i class="fa-solid fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="services.html#customs"><i class="fa-solid fa-file-signature"></i> Customs Brokerage <i class="fa-solid fa-arrow-right arrow-hover"></i></a></li>
+                        <li><a href="services.html#air"><i class="fa-solid fa-plane"></i> Air Freight <i class="fa-solid fa-arrow-right arrow-hover"></i></a></li>
+                        <li><a href="services.html#ocean"><i class="fa-solid fa-ship"></i> Ocean Freight <i class="fa-solid fa-arrow-right arrow-hover"></i></a></li>
+                        <li><a href="services.html#surface"><i class="fa-solid fa-truck"></i> Surface Transport <i class="fa-solid fa-arrow-right arrow-hover"></i></a></li>
+                        <li><a href="services.html#pet"><i class="fa-solid fa-paw"></i> Pet Relocation <i class="fa-solid fa-arrow-right arrow-hover"></i></a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content reveal active">
+                <div style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; color: var(--brand-cyan); font-weight: 700;">Since 1968</div>
+                <h1>Five Decades of Precision Logistics & Customs Mastery</h1>
+                <p>Since 1968, K.L. Bhrara & Co. has been the unseen force behind thousands of successful cross-border shipments—navigating India's complex customs landscape with precision while others stumble through red tape.</p>
+                <div class="hero-btn-group">
+                    <a href="contact.html" class="btn-quote">Get Freight Quote</a>
+                    <a href="contact.html" class="btn-outline-white">Talk to Operations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container legacy-grid">
+            <div class="legacy-text reveal">
+                <h4 class="text-cyan" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 10px;">The KLB Legacy</h4>
+                <h2 style="margin-bottom: 20px; font-size: 2.5rem;">Founded on Documentation Discipline</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">In 1968, our founder built a practice on something radical: absolute documentation precision. That foundation became our operational DNA.</p>
+                <br>
+                <p style="color: var(--text-muted);">Five decades later, it's why multinational corporations trust us with time-sensitive pharmaceutical shipments and why embassies rely on us for diplomatic cargo. Unlike aggregators who route inquiries through call centers, our leadership team personally oversees every account.</p>
+                
+                <div class="legacy-badges">
+                    <div class="badge-box">
+                        <span>1968</span>
+                        <label>Founded</label>
+                    </div>
+                    <div class="badge-box">
+                        <span>50+</span>
+                        <label>Years Exp.</label>
+                    </div>
+                    <div class="badge-box">
+                        <span>Pan-India</span>
+                        <label>Operations</label>
+                    </div>
+                </div>
+            </div>
+            <div class="founder-img-wrap reveal">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Corporate Meeting" class="founder-img">
+                <div class="year-stamp">Est. 1968</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light" style="background-color: var(--off-white);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Professionals vs. Paper-Pushers</h2>
+                <p style="color: var(--text-muted);">What separates K.L. Bhrara from generic logistics aggregators.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h4>Regulatory Intelligence</h4>
+                    <p>50+ years navigating India's customs means we anticipate rule changes before they impact you. HS disputes? Duty drawback? Handled.</p>
+                </div>
+                <div class="diff-card reveal" style="transition-delay: 0.1s;">
+                    <div class="diff-icon"><i class="fa-solid fa-link"></i></div>
+                    <h4>Integrated Logistics</h4>
+                    <p>We own the entire chain: origin pickup → customs clearance → final-mile delivery. One partner. One invoice. Total accountability.</p>
+                </div>
+                <div class="diff-card reveal" style="transition-delay: 0.2s;">
+                    <div class="diff-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h4>Institutional Process</h4>
+                    <p>Our systems were built for pharma cold chains and automotive just-in-time delivery. The same discipline protects your cargo.</p>
+                </div>
+                <div class="diff-card reveal" style="transition-delay: 0.3s;">
+                    <div class="diff-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h4>Humans, Not Tickets</h4>
+                    <p>Your assigned professional has decision-making authority and mobile access. When issues arise at 11 PM, we answer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.2rem;">Services Built for Complexity</h2>
+            </div>
+            <div class="svc-overview-grid">
+                <div class="svc-block reveal">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <h4>Customs House Agency</h4>
+                    <p>Full-spectrum clearance at Delhi Air Cargo, JNPT, ICDs. Zero demurrage focus.</p>
+                </div>
+                <div class="svc-block reveal">
+                    <i class="fa-solid fa-plane-up"></i>
+                    <h4>Air & Ocean Freight</h4>
+                    <p>Global partnerships. Consolidated LCL. Intelligent routing & transparent pricing.</p>
+                </div>
+                <div class="svc-block reveal">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h4>Surface Logistics</h4>
+                    <p>GPS-tracked fleet with last-mile expertise in tier-2/3 cities.</p>
+                </div>
+                <div class="svc-block reveal">
+                    <i class="fa-solid fa-box-open"></i>
+                    <h4>Relocation Services</h4>
+                    <p>White-glove packing for diplomats and executives. Vehicle transport & storage.</p>
+                </div>
+                <div class="svc-block highlight reveal">
+                    <i class="fa-solid fa-paw"></i>
+                    <h4 style="color: #006064;">Pet Relocation</h4>
+                    <p style="color: #006064;">IPATA certified specialists for live animal transport worldwide.</p>
+                </div>
+            </div>
+
+            <div class="pet-split reveal">
+                <div class="pet-image"></div>
+                <div class="pet-content">
+                    <div class="cert-badge"><i class="fa-solid fa-certificate"></i> IPATA CERTIFIED</div>
+                    <h2 style="margin-bottom: 20px;">Live Animal Specialists</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">We are one of India's most experienced IPATA-certified pet shippers—trusted by expat families, breeders, zoos, and research institutions worldwide.</p>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check text-cyan"></i> IATA-compliant crate sourcing</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check text-cyan"></i> Veterinary & Quarantine coordination</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check text-cyan"></i> Temperature-controlled handling</li>
+                    </ul>
+                    <a href="services.html#pet" style="color: var(--brand-navy); font-weight: 700; text-decoration: none;">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light" style="background-color: var(--off-white);">
+        <div class="container">
+            <h4 style="text-align: center; text-transform: uppercase; color: var(--text-muted); letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 40px;">Trusted By Major Industries</h4>
+            <div class="trust-icons reveal">
+                <div class="trust-box"><i class="fa-solid fa-industry"></i> <span>Manufacturing</span></div>
+                <div class="trust-box"><i class="fa-solid fa-pills"></i> <span>Pharma</span></div>
+                <div class="trust-box"><i class="fa-solid fa-shirt"></i> <span>Textiles</span></div>
+                <div class="trust-box"><i class="fa-solid fa-building-flag"></i> <span>Embassies</span></div>
+                <div class="trust-box"><i class="fa-solid fa-briefcase"></i> <span>SMEs</span></div>
+                <div class="trust-box"><i class="fa-solid fa-plane-arrival"></i> <span>Expats</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2>Credentials & Industry Affiliations</h2>
+            </div>
+            <div class="cred-grid reveal">
+                <div class="cred-item"><i class="fa-solid fa-award"></i> <span>Licensed CHA</span></div>
+                <div class="cred-item"><i class="fa-solid fa-paw"></i> <span>IPATA Certified</span></div>
+                <div class="cred-item"><i class="fa-solid fa-plane"></i> <span>BOA Certified</span></div>
+                <div class="cred-item"><i class="fa-solid fa-globe"></i> <span>Member FFI</span></div>
+                <div class="cred-item"><i class="fa-solid fa-shield-halved"></i> <span>AEO Operator</span></div>
+                <div class="cred-item"><i class="fa-solid fa-certificate"></i> <span>MSME Certified</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light" style="background-color: var(--off-white);">
+        <div class="container philosophy-section reveal">
+            <h4 class="text-gold" style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Our Philosophy</h4>
+            <h2>We don't chase volume. <br>We protect outcomes.</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted);">Every shipment is a promise kept—or a reputation lost. We've built a half-century business on doing exactly what we say we'll do.</p>
+            
+            <ul class="promises-list">
+                <li><i class="fa-solid fa-check-double"></i> If we can't handle it, we'll tell you upfront.</li>
+                <li><i class="fa-solid fa-check-double"></i> We resolve customs issues before you hear about them.</li>
+                <li><i class="fa-solid fa-check-double"></i> Zero compromise on compliance and safety.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="container" style="margin-bottom: -50px; position: relative; z-index: 10;">
+        <div class="cta-banner reveal">
+            <h2>If your shipment cannot afford mistakes, we should talk.</h2>
+            <a href="contact.html" class="btn-quote" style="background: white; color: var(--brand-navy) !important; display: inline-block; margin-top: 20px;">Request a Quote</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="footer-logo">K.L. Bhrara & Co.</a>
+                    <p>Delivering excellence since 1968. Your trusted partner for international logistics and customs clearance in India.</p>
+                </div>
+                <div class="footer">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">IATA Regulations</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h4>Newsletter</h4>
+                    <p style="margin-bottom: 15px;">Subscribe for industry updates.</p>
+                    <div style="display: flex; background: #222; padding: 5px; border-radius: 5px;">
+                        <input type="text" placeholder="Email" style="background: none; border: none; padding: 8px; color: white; outline: none; flex: 1;">
+                        <button style="background: var(--brand-cyan); border: none; padding: 8px 15px; color: white; border-radius: 4px; cursor: pointer;">Go</button>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.9rem;">
+                &copy; 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+</body>
+</html>
