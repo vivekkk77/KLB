@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Relocation Services | K.L. Bhrara & Co.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================
+         1. CORE VARIABLES & RESET (Brand Standard)
+         ========================================= */
+      :root {
+        --brand-navy: #1f2060;
+        --brand-cyan: #009fe3;
+        --brand-accent: #c5a059;
+        --white: #ffffff;
+        --off-white: #f8f9fc;
+        --text-main: #1a1a2e;
+        --text-muted: #58677c;
+        --shadow-card: 0 15px 35px rgba(31, 32, 96, 0.08);
+
+        --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background-color: var(--off-white);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      h1, h2, h3, h4, h5 {
+        font-family: "Playfair Display", serif;
+        color: var(--brand-navy);
+        line-height: 1.2;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+      }
+
+      .text-cyan { color: var(--brand-cyan); }
+      .text-gold { color: var(--brand-accent); }
+      .section { padding: 100px 0; }
+      
+      .btn-quote {
+        padding: 12px 28px;
+        background: linear-gradient(135deg, var(--brand-navy), #2a2c85);
+        color: white !important;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(31, 32, 96, 0.2);
+        transition: all 0.3s var(--ease-elastic);
+        border: 1px solid transparent;
+        display: inline-block;
+      }
+      .btn-quote:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(31, 32, 96, 0.3);
+      }
+
+      /* =========================================
+         2. NAVBAR (Reused)
+         ========================================= */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px 0;
+        background: white;
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      nav.scrolled {
+        padding: 10px 0;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+      .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+      .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+      .brand-logo { height: 45px; width: auto; object-fit: contain; }
+      .logo-text { font-family: "Playfair Display", serif; font-size: 1.4rem; font-weight: 700; color: var(--brand-navy); line-height: 1; }
+      
+      .menu { display: flex; gap: 35px; list-style: none; align-items: center; }
+      .menu a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; position: relative; }
+      .menu a:hover { color: var(--brand-cyan); }
+
+      /* Mobile Toggle & Menu logic (Simplified for consistency) */
+      .mobile-toggle { display: none; cursor: pointer; z-index: 2000; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-navy); align-items: center; justify-content: center; color: white; }
+      .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(15,16,53,0.98); z-index: 1500; transform: translateX(100%); transition: 0.5s; display: flex; flex-direction: column; justify-content: center; padding: 40px; }
+      .mobile-menu-overlay.active { transform: translateX(0); }
+      .mobile-links a { color: white; font-size: 2rem; font-family: "Playfair Display"; text-decoration: none; display: block; margin-bottom: 20px; }
+      .close-menu { position: absolute; top: 30px; right: 30px; font-size: 2rem; color: white; cursor: pointer; }
+
+      /* =========================================
+         3. HERO SECTION (Pet Specific)
+         ========================================= */
+      .pet-hero {
+        position: relative;
+        height: 85vh;
+        min-height: 600px;
+        background: url('https://images.unsplash.com/photo-1548658166-136d9f6a7cf1?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center 20%;
+        display: flex;
+        align-items: center;
+      }
+      .pet-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(31,32,96,0.9) 0%, rgba(31,32,96,0.6) 50%, transparent 100%);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        color: white;
+      }
+      .hero-tag {
+        display: inline-block;
+        padding: 8px 16px;
+        background: var(--brand-cyan);
+        color: white;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .pet-hero h1 {
+        color: white;
+        font-size: 4rem;
+        margin-bottom: 24px;
+        line-height: 1.1;
+      }
+      .pet-hero p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        color: rgba(255,255,255,0.9);
+      }
+
+      /* =========================================
+         4. TRUST BADGES
+         ========================================= */
+      .trust-strip {
+        background: white;
+        transform: translateY(-50%);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        position: relative;
+        z-index: 10;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .trust-icon {
+        width: 50px;
+        height: 50px;
+        background: #e0f7fa;
+        color: var(--brand-cyan);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+      .trust-text h5 { margin: 0; font-size: 1rem; font-family: "Manrope"; font-weight: 800; }
+      .trust-text span { font-size: 0.85rem; color: var(--text-muted); }
+
+      /* =========================================
+         5. THE PROCESS (Timeline)
+         ========================================= */
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+      .process-card {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid #eee;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .process-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-card);
+        border-color: var(--brand-cyan);
+      }
+      .step-num {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 4rem;
+        font-weight: 800;
+        color: rgba(0,0,0,0.03);
+        font-family: "Playfair Display";
+      }
+      .process-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+      .process-card ul { padding-left: 20px; color: var(--text-muted); }
+      .process-card li { margin-bottom: 8px; }
+
+      /* =========================================
+         6. PET QUOTE SECTION
+         ========================================= */
+      .pet-quote-section {
+        background: var(--brand-navy);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .pet-quote-bg {
+        position: absolute;
+        top: 0; right: 0;
+        width: 50%; height: 100%;
+        background: url('https://images.unsplash.com/photo-1599388151871-332df7e8c37d?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        opacity: 0.1;
+      }
+      .quote-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+        position: relative;
+        z-index: 2;
+        align-items: center;
+      }
+      .quote-text h2 { color: white; margin-bottom: 20px; }
+      .quote-text p { color: #cbd5e1; margin-bottom: 30px; }
+      
+      .pet-form {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+      }
+      .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .input-group label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; color: var(--brand-navy); }
+      .input-group input, .input-group select, .input-group textarea {
+        width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: "Manrope"; font-size: 0.95rem;
+      }
+      .submit-btn {
+        width: 100%; padding: 15px; background: var(--brand-cyan); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 20px;
+        transition: 0.3s;
+      }
+      .submit-btn:hover { background: #008cc7; }
+
+      /* =========================================
+         7. GALLERY & BREEDS
+         ========================================= */
+      .breed-section { background: white; padding-bottom: 50px; }
+      .breed-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
+      .breed-card { min-width: 250px; border-radius: 12px; overflow: hidden; position: relative; }
+      .breed-card img { width: 100%; height: 300px; object-fit: cover; transition: 0.3s; }
+      .breed-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; }
+      .breed-card:hover img { transform: scale(1.05); }
+
+      /* =========================================
+         8. FOOTER (Reused)
+         ========================================= */
+      footer { background: #050505; color: #888; padding: 80px 0 30px; }
+      .footer-logo { font-size: 1.8rem; color: white; font-family: "Playfair Display", serif; text-decoration: none; display: block; margin-bottom: 20px; }
+      .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
+      .footer ul { list-style: none; }
+      .footer li { margin-bottom: 10px; }
+      .footer a { color: #888; text-decoration: none; transition: 0.3s; }
+      .footer a:hover { color: var(--brand-cyan); }
+
+      /* RESPONSIVE */
+      @media (max-width: 968px) {
+        .menu { display: none; }
+        .mobile-toggle { display: flex; }
+        .trust-strip { flex-direction: column; align-items: flex-start; margin: 0 20px; transform: translateY(-30px); }
+        .quote-wrapper { grid-template-columns: 1fr; }
+        .pet-hero h1 { font-size: 2.8rem; }
+        .form-grid-2 { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="logo">
+          <img src="klb.png" alt="K.L. Bhrara Logo" class="brand-logo" />
+          <div class="logo-text">
+            K.L. Bhrara
+            <span style="font-size: 0.8em; opacity: 0.8; font-family: 'Manrope'; display: block; line-height: 1; font-weight: 400;">& Co. Pvt. Ltd.</span>
+          </div>
+        </a>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars-staggered"></i></div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu-overlay">
+      <div class="close-menu" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+      <div class="mobile-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <section class="pet-hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-tag"><i class="fa-solid fa-paw"></i> Premium Pet Relocation</span>
+          <h1>Moving Your Best Friend Safely.</h1>
+          <p>
+            International and domestic pet travel services. We handle the paperwork, customs, crates, and comfort so you can reunite with a wagging tail.
+          </p>
+          <div style="display: flex; gap: 15px;">
+            <a href="#quote" class="btn-quote">Get Pet Quote</a>
+            <a href="tel:+919812345678" style="padding: 12px 28px; background: white; color: var(--brand-navy); border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+              <i class="fa-solid fa-phone"></i> Call Expert
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="trust-strip">
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-plane-circle-check"></i></div>
+          <div class="trust-text">
+            <h5>IATA Compliant</h5>
+            <span>Approved Travel Crates</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-user-doctor"></i></div>
+          <div class="trust-text">
+            <h5>Vet Assistance</h5>
+            <span>Vaccinations & Certs</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div>
+          <div class="trust-text">
+            <h5>Climate Control</h5>
+            <span>Safe Transit Temperature</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-stopwatch"></i></div>
+          <div class="trust-text">
+            <h5>Direct Routes</h5>
+            <span>Minimizing Travel Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+          <h4 class="text-cyan" style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Stress-Free Travel</h4>
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">How We Move Your Pet</h2>
+          <p style="color: var(--text-muted);">Every animal is different. We create a custom travel plan based on your pet's breed, age, and destination requirements.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <span class="step-num">01</span>
+            <div style="width: 50px; height: 50px; background: var(--brand-navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.2rem;">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <h3>Consultation</h3>
+            <ul>
+              <li>Breed & Size Assessment</li>
+              <li>Route Planning</li>
+              <li>Crate Measurement</li>
+            </ul>
+          </div>
+
+          <div class="process-card">
+            <span class="step-num">02</span>
+            <div style="width: 50px; height: 50px; background: var(--brand-navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.2rem;">
+              <i class="fa-solid fa-file-medical"></i>
+            </div>
+            <h3>Documentation</h3>
+            <ul>
+              <li>Health Certificates</li>
+              <li>Import Permits</li>
+              <li>Microchipping check</li>
+            </ul>
+          </div>
+
+          <div class="process-card">
+            <span class="step-num">03</span>
+            <div style="width: 50px; height: 50px; background: var(--brand-navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.2rem;">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <h3>The Journey</h3>
+            <ul>
+              <li>Airport Check-in</li>
+              <li>Flight Monitoring</li>
+              <li>Customs Clearance</li>
+            </ul>
+          </div>
+
+          <div class="process-card">
+            <span class="step-num">04</span>
+            <div style="width: 50px; height: 50px; background: var(--brand-navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.2rem;">
+              <i class="fa-solid fa-house-chimney"></i>
+            </div>
+            <h3>Reunion</h3>
+            <ul>
+              <li>Quarantine (if needed)</li>
+              <li>Doorstep Delivery</li>
+              <li>Happy Wags!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote" class="pet-quote-section">
+      <div class="pet-quote-bg"></div>
+      <div class="container quote-wrapper">
+        <div class="quote-text">
+          <h2>Ready to Fly?</h2>
+          <p>
+            Fill out the details of your furry friend. We will check the specific regulations for your destination and send you a custom itinerary and quote within 24 hours.
+          </p>
+          <ul style="list-style: none; padding: 0; color: white;">
+            <li style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+              <i class="fa-solid fa-circle-check text-cyan"></i> No Sedation Policy
+            </li>
+            <li style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+              <i class="fa-solid fa-circle-check text-cyan"></i> Constant Updates
+            </li>
+            <li style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+              <i class="fa-solid fa-circle-check text-cyan"></i> Water & Comfort Stops
+            </li>
+          </ul>
+        </div>
+
+        <div class="pet-form">
+          <h3 style="margin-bottom: 20px;">Pet Travel Details</h3>
+          <form>
+            <div class="form-grid-2">
+              <div class="input-group">
+                <label>Owner Name</label>
+                <input type="text" placeholder="Your Name">
+              </div>
+              <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+91 98765...">
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 20px;">
+              <div class="input-group">
+                <label>Pet Type</label>
+                <select>
+                  <option>Dog</option>
+                  <option>Cat</option>
+                  <option>Bird</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Pet Breed</label>
+                <input type="text" placeholder="e.g. Golden Retriever">
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 20px;">
+              <div class="input-group">
+                <label>Age (Years)</label>
+                <input type="number" placeholder="2">
+              </div>
+              <div class="input-group">
+                <label>Weight (kg)</label>
+                <input type="number" placeholder="25">
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 20px;">
+              <div class="input-group">
+                <label>Flying From</label>
+                <input type="text" placeholder="City/Country">
+              </div>
+              <div class="input-group">
+                <label>Flying To</label>
+                <input type="text" placeholder="City/Country">
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Get Free Quote</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="footer-logo">K.L. Bhrara & Co.</a>
+            <p>Your trusted partner for international logistics and customs clearance since 1968.</p>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">Customs Brokerage</a></li>
+              <li><a href="#">Air Freight</a></li>
+              <li><a href="#">Sea Freight</a></li>
+              <li><a href="#">Pet Relocation</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>123 Logistics Park, New Delhi</p>
+            <p>+91 11 2544 1234</p>
+          </div>
+        </div>
+        <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 20px; text-align: center; font-size: 0.9rem;">
+          &copy; 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Toggle Menu Logic
+      function toggleMenu() {
+        const overlay = document.querySelector('.mobile-menu-overlay');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : 'auto';
+      }
+
+      // Sticky Nav
+      window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if(window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      })
+    </script>
+  </body>
+</html>
