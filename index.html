@@ -192,6 +192,8 @@
         box-shadow: 0 8px 20px rgba(31, 32, 96, 0.2);
         transition: all 0.3s var(--ease-elastic);
         border: 1px solid transparent;
+        text-decoration: none; /* Ensure link behaves like button */
+        display: inline-block;
       }
       .btn-quote:hover {
         transform: translateY(-2px);
@@ -488,57 +490,10 @@
         max-width: 90%;
       }
 
-      .tracker-container {
-        background: white;
-        padding: 12px;
-        border-radius: 16px;
-        box-shadow: var(--shadow-card);
-        max-width: 500px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        position: relative;
-      }
-      .tracker-box {
-        display: flex;
-        width: 100%;
-      }
-      .tracker-box input {
-        border: none;
-        padding: 15px;
-        flex: 1;
-        outline: none;
-        font-size: 1rem;
-        color: var(--text-main);
-        font-family: "Manrope";
-      }
-      .tracker-box button {
-        background: var(--brand-cyan);
-        color: white;
-        border: none;
-        padding: 0 30px;
-        border-radius: 12px;
-        font-weight: 600;
-        transition: 0.3s;
-        cursor: pointer;
-      }
-      .tracker-box button:hover {
-        background: #008cc7;
-      }
+      /* Removed Tracker Styles 
+         Added/Modified Button Styles are handled by global .btn-quote
+      */
 
-      .track-result {
-        margin-top: 15px;
-        padding: 15px;
-        background: #e0f7fa;
-        border-radius: 10px;
-        color: #006064;
-        display: none;
-        font-size: 0.9rem;
-        border-left: 4px solid var(--brand-cyan);
-        animation: slideDown 0.3s ease;
-      }
-      @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
 
       /* =========================================
            4. STATS & MARQUEE
@@ -1130,6 +1085,8 @@
             </ul>
           </li>
 
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
+
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
@@ -1152,8 +1109,8 @@
           Services
           <span>Customs, Air, Sea & more</span>
         </a>
+        <a href="pet-relocation.html" onclick="toggleMenu()">Pet Relocation</a>
         <a href="#about" onclick="toggleMenu()">Process</a>
-        <a href="#pet" onclick="toggleMenu()">Pet Relocation</a>
         <a href="contact.html" onclick="toggleMenu()">Contact</a>
         
         <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
@@ -1172,21 +1129,12 @@
             Air, Sea, and Customs Brokerage tailored for your business speed.
           </p>
 
-          <div class="tracker-container hover-link">
-            <div class="tracker-box">
-              <input
-                type="text"
-                id="trackingInput"
-                placeholder="Enter AWB or Container Number..."
-              />
-              <button id="trackBtn" onclick="simulateTracking()">Track</button>
-            </div>
-            <div class="track-result" id="trackResult">
-              <i class="fa-solid fa-circle-check"></i>
-              <strong>Result Found:</strong> Shipment #4492 is currently
-              <b>In Transit</b> (Arriving Delhi: 2 Days).
-            </div>
+          <div style="margin-top: 30px; pointer-events: auto;">
+            <a href="services.html" class="btn-quote" style="padding: 15px 40px; font-size: 1.1rem;">
+                Explore Our Services <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
+            </a>
           </div>
+
         </div>
       </div>
       <div class="hero-bg" id="globeViz"></div>
@@ -2102,37 +2050,7 @@
     </footer>
 
     <script>
-      // 1. Tracking Simulation
-      function simulateTracking() {
-        const btn = document.getElementById("trackBtn");
-        const result = document.getElementById("trackResult");
-        const input = document.getElementById("trackingInput");
-
-        if (input.value.trim() === "") {
-          input.style.border = "1px solid red";
-          return;
-        }
-        input.style.border = "none";
-
-        // Loading State
-        const originalText = btn.innerText;
-        btn.innerText = "Locating...";
-        btn.style.opacity = "0.7";
-        result.style.display = "none";
-
-        // Simulate API Call delay
-        setTimeout(() => {
-          btn.innerText = originalText;
-          btn.style.opacity = "1";
-          result.style.display = "block";
-          // Reset after 5 seconds
-          setTimeout(() => {
-            result.style.display = "none";
-          }, 8000);
-        }, 1500);
-      }
-
-      // 2. Mobile Menu Toggle Logic
+      // 1. Mobile Menu Toggle Logic
       const mobileOverlay = document.querySelector(".mobile-menu-overlay");
 
       function toggleMenu() {
@@ -2146,14 +2064,14 @@
         }
       }
 
-      // 3. Sticky Nav
+      // 2. Sticky Nav
       window.addEventListener("scroll", () => {
         const nav = document.getElementById("navbar");
         if (window.scrollY > 50) nav.classList.add("scrolled");
         else nav.classList.remove("scrolled");
       });
 
-      // 4. Counter Animation
+      // 3. Counter Animation
       const counters = document.querySelectorAll(".counter");
       const speed = 200;
 
@@ -2186,7 +2104,7 @@
         }
       });
 
-      // 5. Reveal on Scroll
+      // 4. Reveal on Scroll
       const reveals = document.querySelectorAll(".reveal");
       const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
@@ -2201,7 +2119,7 @@
       window.addEventListener("scroll", revealOnScroll);
       revealOnScroll();
 
-      // 6. FAQ Accordion
+      // 5. FAQ Accordion
       const accordions = document.querySelectorAll(".accordion-header");
       accordions.forEach((acc) => {
         acc.addEventListener("click", function () {
@@ -2215,7 +2133,7 @@
         });
       });
 
-      // 7. Desktop Dropdown Logic (for clicks on touch devices mostly)
+      // 6. Desktop Dropdown Logic (for clicks on touch devices mostly)
       document.addEventListener("DOMContentLoaded", () => {
         const dropdownTrigger = document.querySelector(".dropdown-trigger");
         const dropdownMenu = document.querySelector(".dropdown-menu");
@@ -2290,5 +2208,5 @@
         });
       });
     </script>
-  </body>
+  </body> 
 </html>

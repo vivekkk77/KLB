@@ -101,24 +101,21 @@
       }
 
       /* =========================================
-           2. NAVBAR (EXACTLY FROM HOME)
+           2. NAVBAR (SOLID WHITE - NO GLASSMORPHISM)
            ========================================= */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
-    
-    /* CHANGE THIS LINE FROM rgba(...) TO #ffffff */
-    background: #ffffff; 
-    
-    z-index: 1000;
-    transition: all 0.4s var(--ease-smooth);
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* Made border subtle grey */
-}
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px 0;
+        background: #ffffff; /* Solid White */
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+      }
       nav.scrolled {
         padding: 10px 0;
-        background: rgba(255, 255, 255, 0.95);
+        background: #ffffff; /* Keep solid */
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       }
 
@@ -921,6 +918,8 @@ nav {
             </ul>
           </li>
 
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
+
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
@@ -943,8 +942,8 @@ nav {
           Services
           <span>Customs, Air, Sea & more</span>
         </a>
+        <a href="pet-relocation.html" onclick="toggleMenu()">Pet Relocation</a>
         <a href="about.html" onclick="toggleMenu()">Process</a>
-        <a href="services.html#pet" onclick="toggleMenu()">Pet Relocation</a>
         <a href="contact.html" onclick="toggleMenu()">Contact</a>
 
         <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
@@ -1124,7 +1123,7 @@ nav {
               transport & storage.
             </p>
           </div>
-          <div class="svc-block highlight reveal">
+          <div class="svc-block reveal">
             <i class="fa-solid fa-paw"></i>
             <h4 style="color: #006064">Pet Relocation</h4>
             <p style="color: #006064">
@@ -1160,7 +1159,7 @@ nav {
               </li>
             </ul>
             <a
-              href="services.html#pet"
+              href="pet-relocation.html"
               style="
                 color: var(--brand-navy);
                 font-weight: 700;
@@ -1398,18 +1397,18 @@ nav {
       });
 
       // 3. Scroll Reveal
-      const reveals = document.querySelectorAll('.reveal');
+      const reveals = document.querySelectorAll(".reveal");
       const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
         const elementVisible = 150;
         reveals.forEach((reveal) => {
           const elementTop = reveal.getBoundingClientRect().top;
           if (elementTop < windowHeight - elementVisible) {
-            reveal.classList.add('active');
+            reveal.classList.add("active");
           }
         });
       };
-      window.addEventListener('scroll', revealOnScroll);
+      window.addEventListener("scroll", revealOnScroll);
       revealOnScroll();
     </script>
   </body>
