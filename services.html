@@ -90,19 +90,16 @@
       /* =========================================
            2. NAVIGATION (EXACTLY FROM HOME)
            ========================================= */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
-    
-    /* CHANGE THIS LINE FROM rgba(...) TO #ffffff */
-    background: #ffffff; 
-    
-    z-index: 1000;
-    transition: all 0.4s var(--ease-smooth);
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* Made border subtle grey */
-}
+      nav {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          padding: 15px 0;
+          background: #ffffff; 
+          z-index: 1000;
+          transition: all 0.4s var(--ease-smooth);
+          border-bottom: 1px solid rgba(0,0,0,0.05); 
+      }
       nav.scrolled {
         padding: 10px 0;
         background: rgba(255, 255, 255, 0.95);
@@ -391,8 +388,8 @@ nav {
         justify-content: center;
         text-align: center;
         color: white;
-        margin-top: 0; /* Adjusted for sticky nav */
-        padding-top: 80px; /* Offset for nav */
+        margin-top: 0;
+        padding-top: 80px;
       }
       .page-hero h1 { color: white; font-size: 3.5rem; margin-bottom: 20px; font-weight: 800; }
       .page-hero p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; }
@@ -446,7 +443,6 @@ nav {
         .menu { display: none; }
         .mobile-toggle { display: flex; }
         
-        /* Service Page Responsive Overrides */
         .split-grid { grid-template-columns: 1fr; gap: 40px; }
         .split-grid.reverse { direction: ltr; }
         .service-img-wrap { height: 300px; order: -1; }
@@ -508,6 +504,18 @@ nav {
               <li>
                 <a href="services.html#ocean">
                   <i class="fa-solid fa-ship"></i> Ocean Freight
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#fcl">
+                  <i class="fa-solid fa-pallet"></i> FCL Shipping
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#lcl">
+                  <i class="fa-solid fa-boxes-stacked"></i> LCL Shipping
                   <i class="fa-solid fa-arrow-right arrow-hover"></i>
                 </a>
               </li>
@@ -621,14 +629,54 @@ nav {
             <div class="service-info reveal">
                 <h4 class="text-cyan">GLOBAL REACH</h4>
                 <h2>Ocean Freight</h2>
-                <p>Cost-effective transport for bulk and large-volume shipments. We manage the entire lifecycle of your container, from factory loading to port handling. Whether you need a Full Container Load (FCL) or Less than Container Load (LCL), we optimize the routing for cost and speed.</p>
+                <p>Cost-effective transport for bulk and large-volume shipments. We manage the entire lifecycle of your container, from factory loading to port handling. We offer comprehensive solutions tailored to your shipment size and routing requirements.</p>
                 <ul class="capabilities-list">
-                    <li><i class="fa-solid fa-check"></i> FCL & LCL Consolidation</li>
+                    <li><i class="fa-solid fa-check"></i> Global Port Network</li>
                     <li><i class="fa-solid fa-check"></i> Project Cargo / Break Bulk</li>
                     <li><i class="fa-solid fa-check"></i> Port-to-Port / Door-to-Door</li>
                     <li><i class="fa-solid fa-check"></i> Marine Insurance</li>
                 </ul>
                 <a href="contact.html" class="cta-btn-outline">Request Ocean Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="fcl" class="split-section bg-light">
+        <div class="container split-grid reverse">
+            <div class="service-img-wrap reveal">
+                <img src="fcl.jpg" class="service-img" alt="FCL Shipping">
+            </div>
+            <div class="service-info reveal">
+                <h4 class="text-cyan">DEDICATED CAPACITY</h4>
+                <h2>FCL Shipping (Full Container Load)</h2>
+                <p>For high-volume shipments, FCL offers dedicated container space exclusively for your cargo. This ensures maximum security, faster transit times with direct routing, and fewer handling points compared to consolidated freight.</p>
+                <ul class="capabilities-list">
+                    <li><i class="fa-solid fa-check"></i> 20ft, 40ft & High Cube options</li>
+                    <li><i class="fa-solid fa-check"></i> Refrigerated (Reefer) Containers</li>
+                    <li><i class="fa-solid fa-check"></i> Open Top & Flat Rack</li>
+                    <li><i class="fa-solid fa-check"></i> Direct Vessel Routing</li>
+                </ul>
+                <a href="contact.html" class="cta-btn-outline">Get FCL Rates</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="lcl" class="split-section">
+        <div class="container split-grid">
+            <div class="service-img-wrap reveal">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop" class="service-img" alt="LCL Shipping">
+            </div>
+            <div class="service-info reveal">
+                <h4 class="text-cyan">COST-EFFECTIVE FLEXIBILITY</h4>
+                <h2>LCL Shipping (Less than Container Load)</h2>
+                <p>When you don't have enough cargo to fill a whole container, LCL allows you to share space and split costs. You pay only for the volume you utilize. We manage the consolidation and deconsolidation process seamlessly at our secure facilities.</p>
+                <ul class="capabilities-list">
+                    <li><i class="fa-solid fa-check"></i> Weekly Consolidated Sailings</li>
+                    <li><i class="fa-solid fa-check"></i> Pay-per-CBM Pricing</li>
+                    <li><i class="fa-solid fa-check"></i> Secure CFS Warehousing</li>
+                    <li><i class="fa-solid fa-check"></i> Palletization & Shrink-wrapping</li>
+                </ul>
+                <a href="contact.html" class="cta-btn-outline">Get LCL Rates</a>
             </div>
         </div>
     </section>
