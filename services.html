@@ -19,7 +19,7 @@
 
     <style>
       /* =========================================
-           1. CORE VARIABLES & RESET (FROM HOME)
+           1. CORE VARIABLES & RESET
            ========================================= */
       :root {
         /* LOGO COLORS */
@@ -53,7 +53,7 @@
 
       body {
         font-family: "Manrope", sans-serif;
-        background-color: var(--white); /* Changed to white for Services page base */
+        background-color: var(--white);
         color: var(--text-main);
         overflow-x: hidden;
         line-height: 1.6;
@@ -91,14 +91,16 @@
            2. NAVIGATION (EXACTLY FROM HOME)
            ========================================= */
       nav {
-          position: fixed;
-          top: 0;
-          width: 100%;
-          padding: 15px 0;
-          background: #ffffff; 
-          z-index: 1000;
-          transition: all 0.4s var(--ease-smooth);
-          border-bottom: 1px solid rgba(0,0,0,0.05); 
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       }
       nav.scrolled {
         padding: 10px 0;
@@ -175,6 +177,7 @@
         box-shadow: 0 8px 20px rgba(31, 32, 96, 0.2);
         transition: all 0.3s var(--ease-elastic);
         border: 1px solid transparent;
+        display: inline-block;
       }
       .btn-quote:hover {
         transform: translateY(-2px);
@@ -540,6 +543,7 @@
             </ul>
           </li>
 
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
@@ -555,23 +559,22 @@
       <div class="close-menu" onclick="toggleMenu()">
         <i class="fa-solid fa-xmark"></i>
       </div>
-      
+
       <div class="mobile-links">
         <a href="index.html" onclick="toggleMenu()">Home</a>
         <a href="services.html" onclick="toggleMenu()">
           Services
           <span>Customs, Air, Sea & more</span>
         </a>
+        <a href="pet-relocation.html" onclick="toggleMenu()">Pet Relocation</a>
         <a href="about.html" onclick="toggleMenu()">Process</a>
-        <a href="services.html#pet" onclick="toggleMenu()">Pet Relocation</a>
         <a href="contact.html" onclick="toggleMenu()">Contact</a>
-        
+
         <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
           Get A Free Quote
         </a>
       </div>
     </div>
-
     <header class="page-hero">
       <div class="container">
         <div class="reveal active">

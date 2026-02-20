@@ -34,6 +34,7 @@
         --radius-lg: 24px;
         --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --ease-material: cubic-bezier(0.85, 0, 0.15, 1);
       }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,7 +83,7 @@
       .reveal.active { opacity: 1; transform: translateY(0); }
 
       /* =========================================
-         2. NAVIGATION
+         2. NAVIGATION (UPDATED TO MATCH INDEX)
          ========================================= */
       nav {
         position: fixed;
@@ -115,6 +116,7 @@
         justify-content: center;
       }
       
+      /* Desktop Menu */
       .menu { display: flex; gap: 35px; list-style: none; align-items: center; }
       .menu a {
         text-decoration: none;
@@ -125,6 +127,17 @@
         position: relative;
       }
       .menu a:hover { color: var(--brand-cyan); }
+      .menu a:not(.btn-quote)::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: var(--brand-cyan);
+        transition: width 0.3s ease;
+      }
+      .menu a:not(.btn-quote):hover::after { width: 100%; }
       
       .btn-quote {
         padding: 12px 28px;
@@ -143,6 +156,68 @@
         box-shadow: 0 12px 25px rgba(31, 32, 96, 0.3);
       }
 
+      /* Dropdown Logic */
+      .nav-item-dropdown { position: relative; padding: 10px 0; cursor: pointer; }
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(15px);
+        background: white;
+        min-width: 260px;
+        padding: 8px 0;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1100;
+        list-style: none;
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+      .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 12px;
+        height: 12px;
+        background: white;
+        border-left: 1px solid rgba(0,0,0,0.04);
+        border-top: 1px solid rgba(0,0,0,0.04);
+      }
+      .nav-item-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        color: var(--text-main);
+        font-size: 0.9rem;
+        border-left: 3px solid transparent;
+      }
+      .dropdown-menu a i:first-child { width: 25px; color: var(--text-muted); }
+      .dropdown-menu a:hover {
+        background: #f4faff;
+        color: var(--brand-cyan);
+        border-left-color: var(--brand-cyan);
+      }
+      .dropdown-menu a:hover i:first-child { color: var(--brand-cyan); }
+      .dropdown-menu a::after { display: none; }
+      .arrow-hover {
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: 0.3s;
+        color: var(--brand-cyan);
+      }
+      .dropdown-menu a:hover .arrow-hover { opacity: 1; transform: translateX(0); }
+
+      /* Premium Mobile Toggle */
       .mobile-toggle {
         display: none;
         cursor: pointer;
@@ -158,22 +233,95 @@
         justify-content: center;
         transition: all 0.4s var(--ease-elastic);
       }
-      .mobile-toggle i { font-size: 1.4rem; color: white; }
+      .mobile-toggle i { font-size: 1.4rem; color: white; transition: transform 0.3s ease; }
+      .mobile-toggle:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 159, 227, 0.4);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .mobile-toggle:active { transform: scale(0.95); background: var(--brand-cyan); }
       
+      /* Mobile Menu Overlay */
       .mobile-menu-overlay {
-        position: fixed; inset: 0;
+        position: fixed;
+        inset: 0;
         background: rgba(15, 16, 53, 0.98);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         z-index: 1500;
-        display: flex; flex-direction: column; justify-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         padding: 40px;
         transform: translateX(100%);
-        transition: transform 0.6s var(--ease-smooth);
+        transition: transform 0.6s var(--ease-material);
       }
       .mobile-menu-overlay.active { transform: translateX(0); }
-      .close-menu { position: absolute; top: 30px; right: 30px; font-size: 2rem; color: white; cursor: pointer; }
-      .mobile-links { display: flex; flex-direction: column; gap: 20px; text-align: center; }
-      .mobile-links a { font-family: "Playfair Display", serif; font-size: 2rem; color: white; text-decoration: none; }
+      
+      .mobile-links {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .mobile-links a {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s;
+      }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+      .mobile-menu-overlay.active .mobile-links a:nth-child(5) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+      .mobile-links a:hover { color: var(--brand-cyan); padding-left: 10px; }
+      .mobile-links span {
+        display: block;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.5);
+        margin-top: -5px;
+        font-weight: 400;
+      }
+      .mobile-btn-quote {
+        margin-top: 30px;
+        background: var(--brand-cyan);
+        color: white !important;
+        text-align: center;
+        font-size: 1.2rem !important;
+        font-family: "Manrope", sans-serif !important;
+        padding: 15px !important;
+        border-radius: 12px;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .mobile-menu-overlay.active .mobile-btn-quote {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.6s;
+      }
+      .close-menu {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        opacity: 0;
+        transform: rotate(-90deg);
+        transition: all 0.5s ease 0.5s;
+      }
+      .mobile-menu-overlay.active .close-menu { opacity: 1; transform: rotate(0); }
 
       /* =========================================
          3. HERO SECTION
@@ -353,7 +501,7 @@
       .step-card p { font-size: 0.95rem; color: var(--text-muted); }
 
       /* =========================================
-         7. MEASUREMENT SECTION (NEW)
+         7. MEASUREMENT SECTION
          ========================================= */
       .measure-section { background: white; }
       .measure-grid {
@@ -383,7 +531,6 @@
         margin-top: 30px;
       }
 
-      /* Style for inserted images to match design */
       .measure-img {
         width: 100%;
         height: auto;
@@ -490,10 +637,68 @@
 
         <ul class="menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#boas">Snub Nose Specialists</a></li>
-          <li><a href="contact.html" class="btn-quote">Get Pet Quote</a></li>
+
+          <li class="nav-item-dropdown">
+            <a href="services.html" class="dropdown-trigger">
+              Services
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.7em; margin-left: 6px; opacity: 0.7"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="services.html#customs">
+                  <i class="fa-solid fa-file-signature"></i> Customs Brokerage
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#air">
+                  <i class="fa-solid fa-plane-departure"></i> Air Freight
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#ocean">
+                  <i class="fa-solid fa-ship"></i> Ocean Freight
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#fcl">
+                  <i class="fa-solid fa-pallet"></i> FCL Shipping
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#lcl">
+                  <i class="fa-solid fa-boxes-stacked"></i> LCL Shipping
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#surface">
+                  <i class="fa-solid fa-truck-fast"></i> Surface Transport
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#movers">
+                  <i class="fa-solid fa-boxes-packing"></i> Packers & Movers
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+              <li>
+                <a href="services.html#pet">
+                  <i class="fa-solid fa-paw"></i> Pet Relocation
+                  <i class="fa-solid fa-arrow-right arrow-hover"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
         </ul>
 
         <div class="mobile-toggle" onclick="toggleMenu()">
@@ -503,15 +708,25 @@
     </nav>
 
     <div class="mobile-menu-overlay">
-      <div class="close-menu" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+      <div class="close-menu" onclick="toggleMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      
       <div class="mobile-links">
-        <a href="index.html">Home</a>
-        <a href="#process" onclick="toggleMenu()">How It Works</a>
-        <a href="#boas" onclick="toggleMenu()">Special Breeds</a>
-        <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">Get A Free Quote</a>
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <a href="services.html" onclick="toggleMenu()">
+          Services
+          <span>Customs, Air, Sea & more</span>
+        </a>
+        <a href="pet-relocation.html" onclick="toggleMenu()">Pet Relocation</a>
+        <a href="#about" onclick="toggleMenu()">Process</a>
+        <a href="contact.html" onclick="toggleMenu()">Contact</a>
+        
+        <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
+          Get A Free Quote
+        </a>
       </div>
     </div>
-
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content reveal active">
@@ -874,11 +1089,15 @@
         });
       });
 
-      // 2. Mobile Menu Toggle
+      // 2. Mobile Menu Toggle (UPDATED TO PREVENT SCROLLING)
       const mobileOverlay = document.querySelector(".mobile-menu-overlay");
       function toggleMenu() {
         mobileOverlay.classList.toggle("active");
-        document.body.style.overflow = mobileOverlay.classList.contains("active") ? "hidden" : "auto";
+        if (mobileOverlay.classList.contains("active")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
       }
 
       // 3. Sticky Nav

@@ -19,8 +19,8 @@
 
     <style>
       /* =========================================
-           1. CORE VARIABLES & ROBUST RESET
-           ========================================= */
+             1. CORE VARIABLES & ROBUST RESET
+             ========================================= */
       :root {
         --brand-navy: #1f2060;
         --brand-cyan: #009fe3;
@@ -101,21 +101,20 @@
       }
 
       /* =========================================
-           2. NAVBAR (EXACTLY FROM HOME)
-           ========================================= */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
-    
-    /* CHANGE THIS LINE FROM rgba(...) TO #ffffff */
-    background: #ffffff; 
-    
-    z-index: 1000;
-    transition: all 0.4s var(--ease-smooth);
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* Made border subtle grey */
-}
+             2. NAVBAR (EXACTLY FROM HOME)
+             ========================================= */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
       nav.scrolled {
         padding: 10px 0;
         background: rgba(255, 255, 255, 0.95);
@@ -191,6 +190,7 @@ nav {
         box-shadow: 0 8px 20px rgba(31, 32, 96, 0.2);
         transition: all 0.3s var(--ease-elastic);
         border: 1px solid transparent;
+        display: inline-block;
       }
       .btn-quote:hover {
         transform: translateY(-2px);
@@ -417,8 +417,8 @@ nav {
       }
 
       /* =========================================
-           4. PAGE CONTENT STYLES
-           ========================================= */
+             4. PAGE CONTENT STYLES
+             ========================================= */
 
       /* Hero */
       .about-hero {
@@ -763,8 +763,8 @@ nav {
       }
 
       /* =========================================
-           5. MEDIA QUERIES
-           ========================================= */
+             5. MEDIA QUERIES
+             ========================================= */
       @media (max-width: 992px) {
         /* 1. Switch Menu to Toggle */
         .menu {
@@ -817,7 +817,7 @@ nav {
         }
         .pet-image {
           order: -1;
-          height: 300px; /* Force height on mobile */
+          height: 300px;
           min-height: auto;
         }
         .pet-content {
@@ -845,93 +845,87 @@ nav {
         }
         .hero-content h1 {
           font-size: 2rem;
-        } 
-      /* =========================================
-   CONCERNS SECTION STYLES
-   ========================================= */
+        }
+        /* =========================================
+       CONCERNS SECTION STYLES
+       ========================================= */
 
-.concerns-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
-    gap: 30px;
-    margin-top: 40px;
-}
+        .concerns-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px;
+          margin-top: 40px;
+        }
 
-.concern-card {
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Very subtle shadow */
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
+        .concern-card {
+          background: var(--white);
+          padding: 40px 30px;
+          border-radius: 16px;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+          transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            box-shadow 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
 
-/* Hover Effect: Gentle lift */
-.concern-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-color: rgba(0, 159, 227, 0.2); /* Subtle Cyan Border */
-}
+        .concern-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+          border-color: rgba(0, 159, 227, 0.2);
+        }
 
-/* Icon Styling */
-.concern-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(0, 159, 227, 0.08); /* Light Cyan bg */
-    color: var(--brand-cyan);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    transition: all 0.3s ease;
-}
+        .concern-icon {
+          width: 60px;
+          height: 60px;
+          background: rgba(0, 159, 227, 0.08);
+          color: var(--brand-cyan);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.6rem;
+          margin-bottom: 25px;
+          transition: all 0.3s ease;
+        }
 
-.concern-card:hover .concern-icon {
-    background: var(--brand-cyan);
-    color: white;
-}
+        .concern-card:hover .concern-icon {
+          background: var(--brand-cyan);
+          color: white;
+        }
 
-/* Typography */
-.concern-card h4 {
-    font-family: 'Manrope', sans-serif; /* Clean sans-serif for questions */
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--brand-navy);
-    margin-bottom: 15px;
-    line-height: 1.4;
-}
+        .concern-card h4 {
+          font-family: "Manrope", sans-serif;
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: var(--brand-navy);
+          margin-bottom: 15px;
+          line-height: 1.4;
+        }
 
-.concern-card p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 0;
-}
+        .concern-card p {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          line-height: 1.7;
+          margin-bottom: 0;
+        }
+      }
 
-/* Special styling for the 5th card to center it if it's alone on a row (optional aesthetic preference) */
-@media (min-width: 1100px) {
-    .concern-card:last-child {
-        grid-column: span 2; /* Spans 2 columns if you have a 2-col grid */
-        max-width: 80%;
-        margin: 0 auto;
-    }
-    /* If using a 3-col grid, reset or adjust logic based on preference. 
-       The grid-template-columns 'auto-fit' handles most cases automatically. */
-}
+      @media (min-width: 1100px) {
+        .concern-card:last-child {
+          grid-column: span 2;
+          max-width: 80%;
+          margin: 0 auto;
+        }
+      }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .concerns-grid {
-        grid-template-columns: 1fr; /* Stack vertically */
-    }
-    .concern-card {
-        padding: 30px 20px;
-    }
-}
+      @media (max-width: 768px) {
+        .concerns-grid {
+          grid-template-columns: 1fr;
+        }
+        .concern-card {
+          padding: 30px 20px;
+        }
       }
     </style>
   </head>
@@ -996,7 +990,7 @@ nav {
                 <a href="services.html#lcl">
                   <i class="fa-solid fa-boxes-stacked"></i> LCL Shipping
                   <i class="fa-solid fa-arrow-right arrow-hover"></i>
-                   </a>
+                </a>
               </li>
               <li>
                 <a href="services.html#surface">
@@ -1019,6 +1013,7 @@ nav {
             </ul>
           </li>
 
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
@@ -1041,8 +1036,8 @@ nav {
           Services
           <span>Customs, Air, Sea & more</span>
         </a>
-        <a href="about.html" onclick="toggleMenu()">Process</a>
-        <a href="services.html#pet" onclick="toggleMenu()">Pet Relocation</a>
+        <a href="pet-relocation.html" onclick="toggleMenu()">Pet Relocation</a>
+        <a href="#about" onclick="toggleMenu()">Process</a>
         <a href="contact.html" onclick="toggleMenu()">Contact</a>
 
         <a href="contact.html" class="mobile-btn-quote" onclick="toggleMenu()">
@@ -1050,7 +1045,6 @@ nav {
         </a>
       </div>
     </div>
-
     <section class="about-hero">
       <div class="container">
         <div class="hero-content reveal active">
@@ -1496,18 +1490,18 @@ nav {
       });
 
       // 3. Scroll Reveal
-      const reveals = document.querySelectorAll('.reveal');
+      const reveals = document.querySelectorAll(".reveal");
       const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
         const elementVisible = 150;
         reveals.forEach((reveal) => {
           const elementTop = reveal.getBoundingClientRect().top;
           if (elementTop < windowHeight - elementVisible) {
-            reveal.classList.add('active');
+            reveal.classList.add("active");
           }
         });
       };
-      window.addEventListener('scroll', revealOnScroll);
+      window.addEventListener("scroll", revealOnScroll);
       revealOnScroll();
     </script>
   </body>
