@@ -85,19 +85,16 @@
       /* =========================================
          2. NAVBAR (EXACTLY FROM HOME)
          ========================================= */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
-    
-    /* CHANGE THIS LINE FROM rgba(...) TO #ffffff */
-    background: #ffffff; 
-    
-    z-index: 1000;
-    transition: all 0.4s var(--ease-smooth);
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* Made border subtle grey */
-}
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 15px 0;
+        background: #ffffff; 
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
       nav.scrolled {
         padding: 10px 0;
         background: rgba(255, 255, 255, 0.95);
@@ -886,6 +883,8 @@ nav {
             </ul>
           </li>
 
+          <li><a href="pet-relocation.html">Pet Relocation</a></li>
+
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="contact.html" class="btn-quote">Get Quote</a></li>
@@ -966,6 +965,7 @@ nav {
                   <label>Full Name *</label>
                   <input
                     type="text"
+                    name="name"
                     class="form-control"
                     placeholder="John Doe"
                     required
@@ -975,6 +975,7 @@ nav {
                   <label>Company Name(optional)</label> 
                   <input
                     type="text"
+                    name="company"
                     class="form-control"
                     placeholder="Global Traders Ltd"
                   />
@@ -986,6 +987,7 @@ nav {
                   <label>Email Address *</label>
                   <input
                     type="email"
+                    name="email"
                     class="form-control"
                     placeholder="john@company.com"
                     required
@@ -995,6 +997,7 @@ nav {
                   <label>Phone Number *</label>
                   <input
                     type="tel"
+                    name="phone"
                     class="form-control"
                     placeholder="+91 98765 43210"
                     required
@@ -1007,13 +1010,14 @@ nav {
                   <label>City</label>
                   <input
                     type="text"
+                    name="city"
                     class="form-control"
                     placeholder="e.g. New Delhi"
                   />
                 </div>
                 <div class="form-group">
                   <label>Shipment Type</label>
-                  <select class="form-control">
+                  <select name="shipment_type" class="form-control">
                     <option>Import to India</option>
                     <option>Export from India</option>
                     <option>Domestic Movement</option>
@@ -1024,18 +1028,18 @@ nav {
               <div class="form-row">
                 <div class="form-group">
                   <label>Service Needed</label>
-                  <select class="form-control">
+                  <select name="service_needed" class="form-control">
                     <option>Customs Brokerage</option>
                     <option>Air Freight</option>
                     <option>Ocean Freight</option>
                     <option>Surface Transport</option>
-                    <option>Pet Relocation</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Cargo Type</label>
                   <input
                     type="text"
+                    name="cargo_type"
                     class="form-control"
                     placeholder="e.g. Auto Parts, Textiles"
                   />
@@ -1046,6 +1050,7 @@ nav {
                 <label>Approx Weight / Volume</label>
                 <input
                   type="text"
+                  name="weight_volume"
                   class="form-control"
                   placeholder="e.g. 500kg or 2 Containers"
                 />
@@ -1054,6 +1059,7 @@ nav {
               <div class="form-group">
                 <label>Message / Specific Requirements</label>
                 <textarea
+                  name="message"
                   class="form-control"
                   rows="3"
                   placeholder="Tell us about your timeline or special handling needs..."
@@ -1264,7 +1270,7 @@ New Delhi-110064
             font-size: 0.9rem;
           "
         >
-          &copy; 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
+          © 2024 K.L. Bhrara & Co. Pvt. Ltd. All Rights Reserved.
         </div>
       </div>
     </footer>
